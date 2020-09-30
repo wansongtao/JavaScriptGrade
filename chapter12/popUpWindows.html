@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹窗与如何判断弹窗屏蔽</title>
+</head>
+<body>
+    <p>失败并不可怕，害怕失败才真正可怕。</p>
+    <script>
+        //检查弹窗是否被屏蔽
+        try{
+            let wroxWin = window.open("https://www.baidu.com", 
+            "_blank",
+            "height=400,width=400,top=10,left=10,resizable=yes");
+
+            if(wroxWin == null) {
+                throw {message: "The popup was blocked"};
+            }
+        } catch(e) {
+            alert("The popup was blocked");
+        }
+
+        
+    </script>
+</body>
+</html>

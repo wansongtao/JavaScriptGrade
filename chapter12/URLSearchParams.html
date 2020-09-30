@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>检查和修改查询字符串</title>
+</head>
+<body>
+    <a href="file:///C:/Programming/JavaScript/JavaScriptHighGrade/chapter12/queryCharacter.html?name=wst&age=22">点我</a>
+    <script>
+        //URLSearchParams提供了一组标准API方法，通过
+        //它们可以检查和修改查询字符串。
+
+        let qs = "?name=wst&age=22";
+
+        let searchParams = new URLSearchParams(qs);
+
+        console.log(searchParams.toString());//name=wst&age=22
+
+        console.log(searchParams.has("name"));//true
+        console.log(searchParams.get("name"));//wst
+
+        //添加
+        searchParams.set("page", 3);
+        console.log(searchParams.toString());//name=wst&age=22&page=3
+
+        //删除
+        searchParams.delete("age");
+        console.log(searchParams.toString());//name=wst&page=3
+    </script>
+</body>
+</html>

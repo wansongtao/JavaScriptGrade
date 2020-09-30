@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>查询字符串</title>
+</head>
+<body>
+    <a href="file:///C:/Programming/JavaScript/JavaScriptHighGrade/chapter12/queryCharacter.html?name=wst&age=22">点我</a>
+    <script>
+        try{
+            let qs = location.search.length > 0 ? location.search.substring(1) : "";
+
+            if(qs == "") {
+                throw {message: "请先点击页面中的按钮"};
+            }
+
+            let arr = qs.split("&"), arg = {};
+
+            arr = arr.map(arr => arr.split("="));
+
+            for(let item of arr) {
+                //decodeURIComponent()解码encodeURIComponent()编码的数据
+                let name = decodeURIComponent(item[0]),
+                value = decodeURIComponent(item[1]);
+
+                if(name.length) {
+                    arg[name] = value;
+                }
+            }
+
+            console.log(arg);
+        }catch(e) {
+            alert(e.message);
+        }
+    </script>
+</body>
+</html>
