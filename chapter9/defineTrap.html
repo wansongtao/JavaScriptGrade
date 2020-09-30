@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定义捕获器</title>
+</head>
+<body>
+    <script>
+        //捕获器就是在处理程序对象中定义的‘基本操作的拦截器’。
+        //只有在代理对象上执行这些操作才会触发捕获器。
+        const target = {
+            foo: 'bar'
+        };
+
+        const handler = {
+            //捕获器在处理程序对象中以方法名为键
+            get() {
+                return 'handler override'
+            }
+        };
+
+        //新建一个代理对象
+        const proxy = new Proxy(target, handler);
+
+        console.log(target.foo);//bar
+        console.log(proxy.foo);//handler override(触发了get)
+
+        console.log(target['foo']);//bar
+        console.log(proxy['foo']);//handler override(触发了get)
+
+
+        console.log(Object.create(target)['foo']);//bar
+        console.log(Object.create(proxy)['foo']);//handler override(触发了get)
+
+    </script>
+</body>
+</html>

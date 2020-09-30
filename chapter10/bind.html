@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bind方法</title>
+</head>
+<body>
+    <script>
+        //bind()方法会创建一个新的函数实例，
+        //this值会被绑定到传给bind()的对象。
+        window.color = 'red';
+        let o = {
+            color: 'blue'
+        };
+
+        function sayColor() {
+            console.log(this.color);
+        }
+
+        let objectSayColor = sayColor.bind(o);
+        objectSayColor();//blue
+    </script>
+</body>
+</html>

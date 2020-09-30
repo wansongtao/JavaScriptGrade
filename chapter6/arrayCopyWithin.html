@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>copyWithin方法</title>
+</head>
+<body>
+    <script>
+        //copyWithin()方法会按照指定范围浅复制数组中
+        //的部分内容，然后将它们插入到指定索引开始的位置。
+        //param1: 插入的索引位置, param2: 复制索引开始的位置, param3: 复制索引结束的位置
+
+        let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+        //从数组中复制索引0开始的内容，插入到索引5开始的位置，直到数组末尾
+        arr.copyWithin(5);
+        console.log(arr);//[0, 1, 2, 3, 4, 0, 1, 2, 3, 4]
+
+        let arr1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        arr1.copyWithin(5, 0, 4);
+        console.log(arr1);//[0, 1, 2, 3, 4, 0, 1, 2, 3, 9]
+
+
+        //使用扩展操作符通过push()方法将一个数组推入一个数组
+        let arr2 = [0, 2, 4];
+        let arr3 = [1, 3];
+
+        arr2.push(...arr3);//push()方法会返回数组长度
+        console.log(arr2);//[0, 2, 4, 1, 3]
+
+        //sort()方法，是按字符串顺序排序的，在给数值排序时，需要传入比较函数
+        let qrr4 = [0, 10, 2, 11, 5, 4];
+        qrr4.sort((num1, num2) => {return num1 - num2});
+        console.log(qrr4);//[0, 2, 4, 5, 10, 11]
+
+        let values = [1, 2, 3, 4, 5];
+        let sum = values.reduce((prev, cur, index, array) => prev + cur);
+
+        console.log(sum);//15
+    </script>
+</body>
+</html>

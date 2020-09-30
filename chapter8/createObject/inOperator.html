@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>in操作符</title>
+</head>
+<body>
+    <script>
+        //in操作符会在可以通过对象访问指定属性时返回true，无论该
+        // 属性是在实例上还是在原型上。
+        let Person = function () {};
+
+        Person.prototype.name = 'Nicholas';
+        Person.prototype.age = 29;
+        Person.prototype.job = 'Software Engineer';
+
+        let person1 = new Person();
+        let person2 = new Person();
+
+        console.log(person1.hasOwnProperty('name'));//false 在原型上
+        console.log('name' in person1);  //true
+
+        person2.name = 'lst';
+        console.log(person2.hasOwnProperty('name'));//true 在实例上
+        console.log('name' in person2);//true
+        //只要in操作符返回true且hasOwnProperty()返回false，就说明该属性是一个原型属性。
+    </script>
+</body>
+</html>

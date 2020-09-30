@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>提前终止迭代器</title>
+</head>
+<body>
+    <script>
+        function* generatorFn(){
+            for (const x of [1, 2, 3, 4]){
+                yield x;
+            }
+        }
+
+        const g = generatorFn();
+
+        for(const x of g){
+            //0 1 2
+            if (x > 2){
+                //return方法会强制生成器进入关闭状态
+                console.log(g.return(5));//{value: 5, done: true}
+            }
+            console.log(x);//1 2 3
+        }
+
+        console.log(g);//generatorFn {<closed>}
+
+
+        //throw方法会在暂停的时候将一个提供的错误注入到生成器对象中。
+        //如果错误未被处理，生成器就会关闭。
+        function* generatorOne(){
+            for (const x of [1, 2, 3, 4]){
+                yield x;
+
+                //假如生成器处理了这个错误，那么生成器就不会关闭，错误处理会跳过对应的yield
+                /*try {
+                    yield x;
+                }catch(ex){
+
+                }*/
+            }
+        }
+
+        const i = generatorOne();
+
+        try {
+            i.throw('foo');
+        }catch(ex){
+            console.log(ex);//foo
+        }
+
+        console.log(i);//generatorOne {<closed>}
+    </script>
+</body>
+</html>

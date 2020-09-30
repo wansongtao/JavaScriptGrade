@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>箭头函数</title>
+</head>
+<body>
+    <script>
+        /*
+        只有没有参数，或者多个参数的情况下，才必须要使用括号。
+        箭头函数也可以不使用大括号，但这样会改变函数的行为。如果不
+        使用大括号，那么箭头函数后面就只能有一行代码，例如：一个赋值操作、
+        一个表达式。而且省略大括号会隐式返回这行代码的值。
+        */
+        let double = (x) => {return 2 * x};
+        let triple = x => 3 * x;
+
+        let value = {};
+        let setName = (x) => x.name = 'Matt';
+        setName(value);
+        console.log(value.name);
+
+        //无效的写法
+        //let multiply = (a, b) => return a * b;
+    </script>
+</body>
+</html>

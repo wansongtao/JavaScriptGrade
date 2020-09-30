@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let obj = [0, 1, 2, 3, 4];
+        obj.name = "wansongtao";
+        obj.age = "22";
+
+        for(const value of obj){
+            console.log(value);//0,1,2,3,4
+        }
+
+        for(const value in obj){
+            console.log(value);//'0' '1'... name age
+        }
+    </script>
+</body>
+</html>

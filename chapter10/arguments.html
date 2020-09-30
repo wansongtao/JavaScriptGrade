@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arguments</title>
+</head>
+<body>
+    <script>
+        //使用arguments.callee就可以让函数逻辑与函数名解耦
+        function factorial(num) {
+            if(num <= 1) {
+                return 1;
+            }else {
+                //arguments对象有一个callee属性，是一个指向
+                //arguments对象所在函数的指针。
+                return num * arguments.callee(num - 1);
+            }
+        }
+
+        console.log(factorial(5));//120
+    </script>
+</body>
+</html>

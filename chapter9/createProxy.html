@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建空代理</title>
+</head>
+<body>
+    <script>
+        //在代理对象上执行的任何操作实际上都会应用到目标对象
+        //代码中操作的是代理对象
+        const target = {
+            id: 'target'
+        };
+
+        const handler = {};
+
+        //代理使用Proxy构造函数创建，接收两个必选参数：
+        //param1 目标对象   param2 处理程序对象
+        const proxy = new Proxy(target, handler);
+
+        //id属性会访问同一个值
+        console.log(target.id);//target
+        console.log(proxy.id);//target
+
+        //给目标属性赋值会反映在两个对象上
+        //因为两个对象访问的是同一个值
+        target.id = 'foo';
+        console.log(target.id);//foo
+        console.log(proxy.id);//foo
+
+        //给代理属性赋值会反映在两个对象上
+        //因为这个赋值会转移到目标对象
+        proxy.id = 'bar';
+        console.log(target.id);//bar
+        console.log(proxy.id);//bar
+
+        //hasOwnProperty()方法在两个地方都会应用到目标对象
+        console.log(target.hasOwnProperty('id'));//true
+        console.log(proxy.hasOwnProperty('id'));//true
+
+        //Proxy.prototype是undefined，因此不能使用instanceof操作符
+        console.log(target instanceof Proxy);
+        //Function has non-object prototype 'undefined' in instanceof check
+
+        console.log(proxy instanceof Proxy);
+        //Function has non-object prototype 'undefined' in instanceof check
+
+        //严格相等可以用来区分代理和目标
+        console.log(target === proxy);  //false
+    </script>
+</body>
+</html>

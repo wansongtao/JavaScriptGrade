@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>捕获器不变式</title>
+</head>
+<body>
+    <script>
+        const target = {};
+
+        Object.defineProperty(target, 'foo', {
+            configurable: false,
+            writable: false,
+            value: 'bar'
+        });
+
+        const handler = {
+            get() {
+                return 'qux';
+            }
+        };
+
+        const proxy = new Proxy(target, handler);
+
+        //目标对象有一个不可配置且不可写的数据属性，那么
+        //在捕获器返回一个与该属性不同的值时，会抛出TypeError
+        console.log(proxy.foo);// TypeError
+    </script>
+</body>
+</html>

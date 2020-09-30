@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fill方法</title>
+</head>
+<body>
+    <script>
+        const zeroes = [0, 0, 0, 0, 0];
+
+        //使用fill方法可以向一个已有数组中插入全部相同或部分相同的值。
+        //param1: 用来填充的数  param2: 开始位置(可选)  param3: 结束位置(可选)
+        console.log(Array.from(zeroes.fill(5)));// [5, 5, 5, 5, 5]
+        console.log(zeroes);// [5, 5, 5, 5, 5] 会改变原数组
+        zeroes.fill(0); //重置
+
+        //用2填充索引大于等于3的元素
+        console.log(Array.from(zeroes.fill(2, 3)));//[0, 0, 0, 2, 2]
+        zeroes.fill(0); //重置
+
+        //用2填充索引大于等于0小于3的元素
+        console.log(Array.from(zeroes.fill(2, 0, 3)));//[2, 2, 2, 0, 0]
+        zeroes.fill(0); //重置
+
+        //负索引等于它加上数组长度 -4 + 5 = 1, -1 + 5 = 4
+        console.log(Array.from(zeroes.fill(2, -4, -1)));//[0, 2, 2, 2, 0]
+        zeroes.fill(0); //重置
+
+        /*zeroes.fill(); //不传入参数
+        console.log(zeroes);// [undefined, undefined, undefined, undefined, undefined]*/
+
+        //fill()方法忽略超出数组边界、零长度及方向相反的索引范围，部分可用填充部分
+    </script>
+</body>
+</html>

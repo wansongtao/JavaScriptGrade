@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>迭代器</title>
+</head>
+<body>
+    <script>
+        //实现栈结构的类
+        class Stack{
+            //类的构造函数
+            constructor(){
+                this.dataStore = [];
+            }
+
+            //向栈添加数据的方法
+            push(data){
+                this.dataStore.push(data);
+
+                return this.dataStore.length;
+            }
+
+            //删除栈内数据的方法
+            pop(){
+                return this.dataStore.pop();
+            }
+
+            //栈的默认迭代器方法
+            [Symbol.iterator]() {
+                let count = 0
+                , arr = this.dataStore;
+
+                return {
+                    next() {
+                        if (count < arr.length){
+                            let value = arr[count];
+
+                            count++;
+                            return {done: false, value: value};
+                        } else{
+                            return {done: true};
+                        }
+                    },
+                    return() {
+                        //用来实现提前终止迭代器
+                        console.log('Exiting early');
+                        return {done: true};
+                    }
+                };
+            }
+        
+        }
+
+        let myStack = new Stack();
+        //let arr = [1, 2, 3, 4, 5];
+
+        myStack.push(1);
+        myStack.push(2);
+        myStack.push(3);
+        myStack.push(4);
+
+        for(let i of myStack){
+            if(i > 2){
+                break;
+            }
+            console.log(i);//1  2  Exiting early
+        }
+    </script>
+</body>
+</html>

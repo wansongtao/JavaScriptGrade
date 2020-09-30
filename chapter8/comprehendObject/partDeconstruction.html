@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>部分解构</title>
+</head>
+<body>
+    <script>
+        //涉及多个属性的解构赋值是一个输出无关的顺序化操作。
+        let person = {
+            name: 'Matt',
+            age: 27
+        };
+
+        let personName, personBar, personAge;
+
+        try{
+            //开始的赋值成功而后面的赋值出错，则整个解构赋值只会完成一部分
+            ({name: personName, foo: {bar: personBar }, age: personAge} = person);
+        }catch(e){}
+
+        console.log(personName, personBar, personAge);//Matt undefined undefined
+
+
+        //在函数参数列表中也可以进行解构赋值
+        let fruit = {
+            fruitName: 'Matt',
+            nums: 27
+        };
+
+        function printPerson(foo, {fruitName, nums: num}, bar){
+            console.log(arguments);//["lst", {…}, "2nd", callee: (...), Symbol(Symbol.iterator): ƒ]
+            console.log(fruitName, num);//Matt 27
+        }
+
+        printPerson('lst', fruit, '2nd');
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试例子</title>
+</head>
+<body>
+    <script>
+        let qs = location.search.substring(1);
+        let hostName = location.hostname;
+        let url = location.href;
+
+        //使用with可以少写一些代码，但不推荐使用
+        with(location){
+            let qs = search.substring(1);
+            let hostName = hostname;
+            let url = href;
+        }
+    </script>
+</body>
+</html>

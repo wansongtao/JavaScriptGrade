@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>为期约添加处理程序</title>
+</head>
+<body>
+    <script>
+        /*Promise.prototype.then()是为期约实例添加处理程序的主要方法。
+        then方法接收最多两个参数：onResolved处理程序和onRejected处理程序。*/
+
+        //在期约进入“兑现”状态时执行。
+        function onResolved(id) {
+            setTimeout(console.log, 0, id, 'resolved');
+            //console.log(id + 'resolved');
+        }
+
+        //在期约进入拒绝状态时执行。
+        function onRejected(id) {
+            setTimeout(console.log, 0, id, 'rejected');
+        }
+
+        //一秒后切换为“兑现”状态。
+        let p1 = new Promise((resolve, reject) => setTimeout(resolve, 1000));
+
+        //一秒后切换为“拒绝”状态。
+        let p2 = new Promise((resolve, reject) => setTimeout(reject, 1000));
+
+        //期约只能转换为最终状态一次，所以这两个操作一定是互斥的。
+        p1.then(() => onResolved('p1'), () => onRejected('p1'));//p1 resolved
+
+        //只会触发onRejected处理程序
+        p2.then(() => onResolved('p2'), () => onRejected('p2'));//p2 rejected
+    </script>
+</body>
+</html>

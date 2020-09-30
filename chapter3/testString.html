@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据类型</title>
+</head>
+<body>
+    <script>
+        //这个模板字面量以一个换行符开头，会保持反引号内部的空格
+        let myStr = `
+        first line
+        second line`;
+
+        console.log(myStr.length);  //39
+        console.log(myStr[0] === '\n');  //true
+
+        //模板字面量通过使用${}实现字符串插值，所有插入的值都会使用toString()强制
+        //转型为字符串，而且任何JavaScript表达式都可以用于插值。
+        let arr = [1, 2, 3, 4];
+
+        console.log(`这个数组的值为：${arr}`);  //这个数组的值为：1,2,3,4
+
+        let localSymbol = Symbol('foo');
+        let globalSymbol = Symbol.for('foo');
+
+        console.log(localSymbol === globalSymbol);  //false
+        console.log(localSymbol == globalSymbol);  //false
+
+
+        //创建全局符号
+        let s = Symbol.for('foo');
+        console.log(Symbol.keyFor(s));//foo
+
+        //创建普通符号
+        let s2 = Symbol('bar');
+        console.log(Symbol.keyFor(s2));//undefined
+
+        Symbol.keyFor(123);//TypeError: 123 is not a symbol
+
+        function foo(){
+            console.log(age);
+            var age = 26;
+
+            //等价于
+            var age;
+            console.log(age);
+            age = 26;
+        }
+        foo();  //undefined
+    </script>
+</body>
+</html>

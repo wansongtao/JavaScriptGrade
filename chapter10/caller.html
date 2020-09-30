@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>caller</title>
+</head>
+<body>
+    <script>
+        //caller，这个属性引用的是调用当前函数的函数。
+        //如果是在全局作用域中调用的则为null。
+        function outer() {
+            inner();
+        }
+
+        function inner() {
+            console.log(inner.caller);
+            //console.log(arguments.callee.caller);
+        }
+
+        outer();// f outer() {inner();}
+    </script>
+</body>
+</html>

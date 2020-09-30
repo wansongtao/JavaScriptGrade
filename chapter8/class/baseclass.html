@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽象基类</title>
+</head>
+<body>
+    <script>
+        //它可供其他类继承，但本身不会被实例化
+        class Vehicle {
+            constructor() {
+                //new.target保存通过new关键字调用的类或函数
+                console.log(new.target);
+
+                //通过在实例化时检测new.target是不是抽象基类，可以阻止对抽象基类的实例化。
+                if (new.target === Vehicle){
+                    throw new Error('Vehicle cannot be directyly instantiated');
+                }
+            }
+        }
+
+        //派生类
+        class Bus extends Vehicle {}
+
+        new Bus();//class Bus extends Vehicle {}
+
+        //本身实例化，报错
+        //new Vehicle();//class Vehicle {}
+        // Vehicle cannot be directyly instantiated(报错)
+
+
+        //通过在抽象基类构造函数中进行检查，可以要求派生类必须定义某个方法。
+        class Person {
+            constructor() {
+                if (new.target === Vehicle){
+                    throw new Error('Vehicle cannot be directly instantiated');
+                }
+
+                if (!this.foo){
+                    throw new Error('Inheriting class must define foo()');
+                }
+
+                console.log('success!');
+            }
+        }
+
+        //派生类
+        class Student extends Person {
+            foo() {}
+        }
+
+        //派生类
+        class Van extends Person {}
+
+        new Student();//success!
+
+        //没有实现foo（）方法，会报错
+        new Van();//Inheriting class must define foo()
+    </script>
+</body>
+</html>

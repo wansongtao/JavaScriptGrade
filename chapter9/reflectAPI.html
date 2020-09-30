@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>反射api</title>
+</head>
+<body>
+    <script>
+        //处理程序对象中所有可以捕获的方法都有对应的反射API方法
+        const target = {
+            foo: 'bar'
+        };
+
+        const handler = {
+            get: Reflect.get
+        };
+
+        const proxy = new Proxy(target, handler);
+
+        console.log(proxy.foo);//bar
+        console.log(target.foo);//bar
+
+
+        //反射api，在此基础上开发者可以用最少的代码修改捕获的方法。
+        const targetO = {
+            foo: 'bar',
+            baz: 'qux'
+        };
+
+        const handlerO = {
+            get(trapTarget, property, receiver){
+                let decoration = '';
+
+                if (property === 'foo'){
+                    decoration = '!!!';
+                }
+
+                return Reflect.get(...arguments) + decoration;
+            }
+        };
+
+        const proxyO = new Proxy(targetO, handlerO);
+
+        console.log(proxyO.foo);//bar!!!
+        console.log(targetO.foo);//bar
+
+        console.log(proxyO.baz);//qux
+        console.log(targetO.baz);//qux
+    </script>
+</body>
+</html>

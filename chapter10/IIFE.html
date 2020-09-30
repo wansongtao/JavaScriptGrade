@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立即调用的函数表达式</title>
+</head>
+<body>
+    <script>
+        //立即调用的匿名函数又被称作立即调用的函数表达式。
+        /*它类似于函数声明，但由于被包含在括号中，所以会被
+        解释为函数表达式。紧跟在第一组括号后面的第二组括号
+        会立即调用前面的函数表达式。*/
+        (function () {
+            for (let i = 0; i < 7; i++){
+                console.log(i);
+            }
+        })();
+
+        //动态规划求斐波那切数列
+        function factorial(n) {
+            if(n <= 2) {
+                return 1;
+            }else {
+                let arr = [1, 1];
+
+                for(let i = 2; i < n; i++){
+                    arr[i] = arr[i - 1] + arr[i - 2];
+                }
+
+                return arr[n - 1];
+            }
+        }
+
+        console.log(factorial(6));
+    </script>
+</body>
+</html>

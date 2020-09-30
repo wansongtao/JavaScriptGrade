@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>number</title>
+</head>
+<body>
+    <script>
+        //toFixed()方法返回包含指定小数点位数的数值字符串
+        let num = 10.005;
+        console.log(num.toFixed(2));//10.01
+
+        //toExponential()接受一个参数，表示结果中的小数位数，以科学计数法表示
+        let num1 = 9999999;
+        console.log(num1.toExponential(2));//1.00e+7
+
+        //toPrecision()方法会根据情况返回最合理的输出结果，接收一个参数，表示结果中数值的总位数
+        let num2 = 10000;
+        console.log(num2.toPrecision(2));//1.0e+4
+    </script>
+</body>
+</html>

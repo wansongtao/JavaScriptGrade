@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数声明与函数表达式</title>
+</head>
+<body>
+    <script>
+        console.log(sum(10, 10));//20
+
+        //在执行代码时，JavaScript引擎会先执行一遍扫描，
+        //把发现的函数声明提升到源代码树的顶部。
+        function sum(num1, num2) {
+            return num1 + num2;
+        }
+
+        //会出错
+        console.log(sumO(10, 10));
+
+        //函数表达式必须等到代码执行到它那一行，才会在执
+        //行上下文中生成函数定义。
+        let sumO = (num1, num2) => {
+            return num1 + num2;
+        }
+    </script>
+</body>
+</html>

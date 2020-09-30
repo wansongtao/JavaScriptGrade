@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原型层级</title>
+</head>
+<body>
+    <script>
+        /*
+        只要给对象实例添加一个属性，这个属性就会遮蔽原型对象上的同名属
+        性，也就是虽然不会修改它，但会屏蔽对它的访问。即使在实例上把这
+        个属性设置为null，也不会恢复它和原型的联系。不过，使用delete操
+        作符可以完全删除实例上的这个属性，从而让标识符解析过程能够继续搜索
+        原型对象。
+
+        因为在通过对象访问属性时，会按照这个属性的名称开始搜索。搜索开始
+        于对象实例本身。如果在这个实例上发现了给定的名称，则返回该名称对
+        应的值。如果没有找到这个属性，则搜索会沿着指针进入原型对象，然后
+        在原型对象上找到属性后，在返回对应的值。
+        */
+        let Person = function() {};  //声明一个构造函数
+
+        //通过原型对象添加属性
+        Person.prototype.name = 'Nicholas';
+        Person.prototype.age = 29;
+        
+        let person1 = new Person();
+        let person2 = new Person();
+
+        person1.name = 'greg';
+        console.log(person1.name);//greg
+        console.log(person2.name);//Nicholas
+
+
+        //hasOwnProperty()方法用于确定某个属性是在实例上还是原型对象上。
+        let LikePerson = function() {};
+
+        LikePerson.prototype.name = 'lst';
+        LikePerson.prototype.age = 20;
+        LikePerson.prototype.job = 'student';
+
+        let like1 = new LikePerson();
+        let like2 = new LikePerson();
+
+        console.log(like1.hasOwnProperty('name'));//false 来自原型
+
+        like2.name = 'wst';
+        console.log(like2.hasOwnProperty('name'));//true 来自实例
+    </script>
+</body>
+</html>

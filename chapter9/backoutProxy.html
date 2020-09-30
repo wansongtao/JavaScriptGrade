@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可撤销代理</title>
+</head>
+<body>
+    <script>
+        //revocable()方法，这个方法支持撤销代理对象与目标对象的关联
+        const target = {
+            foo: 'bar'
+        };
+
+        const handler = {
+            get() {
+                return 'intercepted';
+            }
+        };
+
+        //revocable()返回两个值（其实是一个对象），一个代理对象，一个撤销函数
+        const { proxy, revoke} = Proxy.revocable(target, handler);
+
+        console.log(proxy.foo);//intercepted
+        console.log(target.foo);//bar
+
+        //撤销代理，不可逆
+        revoke();
+
+        console.log(proxy.foo);//TypeError
+    </script>
+</body>
+</html>

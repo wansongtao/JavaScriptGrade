@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加onFinally处理程序</title>
+</head>
+<body>
+    <script>
+        /*Promise.prototype.finally()方法用于给期约添加
+        onFinally处理程序，这个处理程序在期约转换为解决或
+        拒绝状态时都会执行。但这个方法没有办法知道期约的状态
+        是解决还是拒绝，这个方法主要用于添加清理代码。*/
+
+        let p1 = Promise.resolve();
+        let p2 = Promise.reject();
+        let onFinally = function() {
+            setTimeout(console.log, 0, 'Finally');
+        };
+
+        p1.finally(onFinally);//Finally
+        p2.finally(onFinally);//Finally
+    </script>
+</body>
+</html>

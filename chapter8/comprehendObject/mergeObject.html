@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>合并对象</title>
+</head>
+<body>
+    <script>
+        let dest, src, result;
+
+        //简单复制
+        dest = {};
+        src = {id : 'src'};
+
+        //Object.assign修改目标对象，也会返回修改后的目标对象
+        result = Object.assign(dest, src);
+        console.log(dest);//{id: "src"}  dest目标对像   src源对象
+        console.log(result);//{id: "src"}
+
+
+        //多个源对象
+        dest = {};
+
+        result = Object.assign(dest, {a: 'foo'}, {b: 'bar'});
+
+        console.log(result);//{a: "foo", b: "bar"}
+
+        //获取函数与设置函数
+        dest = {
+            set a(val) {
+                console.log(`Invoked dest setter with param ${val}`);
+            }
+        };
+        src = {
+            get a(){
+                console.log('Invoked src getter');
+                return 'foo';
+            }
+        }
+
+        Object.assign(dest, src);
+        console.log(dest);//{set a(val) {...}}
+    </script>
+</body>
+</html>

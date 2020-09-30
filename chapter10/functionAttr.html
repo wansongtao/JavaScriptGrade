@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数属性</title>
+</head>
+<body>
+    <script>
+        //ES中的函数是对象，因此有属性和方法。每个
+        //函数都有两个属性：length和prototype。
+
+        function sayName(name) {
+            console.log(name);
+        }
+
+        function sum(num1, num2) {
+            return num1 + num2;
+        }
+
+        function sayHi() {
+            console.log('hi');
+        }
+
+        //length属性保存函数定义的命名参数的个数。
+        console.log(sayName.length);//1
+        console.log(sum.length);//2
+        console.log(sayHi.length);//0
+    </script>
+</body>
+</html>

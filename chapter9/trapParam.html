@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>捕获器参数</title>
+</head>
+<body>
+    <script>
+        //所有捕获器都可以访问相应的参数，基于这些参数可以重建被捕获方法的原始行为。
+        const target = {
+            foo: 'bar'
+        };
+
+        const handler = {
+            //trapTarget: 目标对象，property：要查询的属性，receiver：代理对象
+            get(trapTarget, property, receiver) {
+                console.log(trapTarget === target);
+                console.log(property);
+                console.log(receiver === proxy);
+            }
+        };
+
+        //target 目标对象   handler 处理程序对象
+        const proxy = new Proxy(target, handler);
+
+        proxy.foo;//true   foo   true
+    </script>
+</body>
+</html>

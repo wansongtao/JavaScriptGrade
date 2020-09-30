@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL编码方法</title>
+</head>
+<body>
+    <script>
+        let uri = "https://www.wrox.com/illegal/value.js#start ";
+
+        //encodeURI()方法用于对整个URI进行编码，不会编码属于URI组件的特殊字符
+        console.log(encodeURI(uri));
+        // https://www.wrox.com/illegal/value.js#start%20
+
+        //encodeURIComponent()方法将所有非字母字符都替换成了相应的编码格式，
+        //这就是只使用encodeURIComponent()方法编码那些追加到已有URI后面的字符的原因
+        //例如：value.js#start 
+        console.log(encodeURIComponent(uri));
+        // https%3A%2F%2Fwww.wrox.com%2Fillegal%2Fvalue.js%23start%20
+
+        let uri2 = 'https%3A%2F%2Fwww.wrox.com%2Fillegal%2Fvalue.js%23start%20';
+
+        //decodeURI()只对使用encodeURI()编码过的字符解码。
+        console.log(decodeURI(uri2));//https%3A%2F%2Fwww.wrox.com%2Fillegal%2Fvalue.js%23start 
+
+        //decodeURIComponent()只对使用encodeURIComponent()方法编码过的字符解码
+        console.log(decodeURIComponent(uri2));//https://www.wrox.com/illegal/value.js#start 
+
+        
+        let arr = [1,10, 12, 80, 0, 99];
+        //确定数组中的最大、小值可以使用扩展操作符...
+        let max = Math.max(...arr);
+
+        console.log(max);//99
+
+        //Crypto.getRandomValues() 方法让你可以获取符
+        //合密码学要求的安全的随机值。传入参数的数组被随机值填充（在加密意义上的随机）。
+        /*
+            param: typedArray是一个基于整数的 TypedArray，它可以是 Int8Array、Ui
+            nt8Array、Int16Array、 Uint16Array、 Int32Array 或者 Uint32Array。
+            在数组中的所有的元素会被随机数重写。（注释：生成的随机数储存在 typedArray 数组上。）
+        */
+        let arr1 = new Int8Array(10);
+        let randomNum = window.crypto.getRandomValues(arr1);
+        console.log(randomNum);//Int8Array(10) [-3, -127, -74, 65, -21, 99, -110, -57, 24, -61]
+    </script>
+</body>
+</html>

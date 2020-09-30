@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>收集参数</title>
+</head>
+<body>
+    <script>
+        //在构思函数定义时，可以使用扩展操作符把不同长度
+        //的独立参数组合为一个数组。
+        //因为收集参数的结果可变，所以只能把它作为最后一个参数。
+        function getSum (num, ...values){
+            //使用收集参数并不影响arguments对象
+            console.log(arguments.length);//4
+            return values.reduce((x, y) => x + y, num);
+        }
+
+        console.log(getSum(1, 2, 3, 4));//10
+    </script>
+</body>
+</html>

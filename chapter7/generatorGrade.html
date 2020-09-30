@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成器高级操作</title>
+</head>
+<body>
+    <script>
+        class Stack{
+            constructor(){
+                this.dataStore = [];
+            }
+
+            push(data) {
+                this.dataStore.push(data);
+                return this.dataStore.length;
+            }
+
+            pop() {
+                return this.dataStore.pop();
+            }
+
+            //使用生成器函数实现默认迭代器
+            *[Symbol.iterator]() {
+                yield* this.dataStore;
+            }
+
+            //相当于
+            *generatorOne() {
+                for (let i = 0; i < this.dataStore.length; i++){
+                    yield this.dataStore[i];
+                }
+            }
+        }
+
+        let myStack = new Stack();
+
+        myStack.push(1);
+        myStack.push(2);
+        myStack.push(3);
+        myStack.push(4);
+
+        for(const x of myStack){
+            console.log(x);  //1  2  3  4
+        }
+
+        //使用yield*实现递归算法
+        function* generatorTwo(n){
+            if(n > 0){
+                yield* generatorTwo(n - 1);
+                yield n - 1;
+            }
+        }
+
+        for (const x of generatorTwo(4)){
+            console.log(x);// 0  1  2  3
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类混入</title>
+</head>
+<body>
+    <script>
+        class Vehicle {}
+
+        let FooMixin = (Superclass) => class extends Superclass {
+            foo() {
+                console.log('foo');
+            }
+        };
+
+        let BarMixin = (Superclass) => class extends Superclass {
+            bar() {
+                console.log('Bar');
+            }
+        };
+
+        let BazMixin = (Superclass) => class extends Superclass {
+            baz() {
+                console.log('baz');
+            }
+        };
+
+        class Bus extends FooMixin(BarMixin(BazMixin(Vehicle))) {}
+
+        let b = new Bus();
+        b.foo();  //foo
+        b.bar();  //bar
+        b.baz();  //baz
+    </script>
+</body>
+</html>

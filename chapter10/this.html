@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this指向</title>
+</head>
+<body>
+    <script>
+        /*在标准函数中，this引用的是把函数当成方法调用
+        的上下文对象。（在网页的全局上下文中调用函数时，
+        this指向Windows）*/
+        window.color = 'red';
+
+        let o = {
+            color: 'blue'
+        };
+
+        function sayColor(){
+            console.log(this.color);
+        }
+
+        sayColor();//red
+
+        o.sayColor = sayColor;
+        o.sayColor();//blue
+
+
+        //在箭头函数中，this引用的是定义箭头函数的上下文。
+        window.colors = 'red';
+
+        let w = {
+            colors: 'blue'
+        };
+
+        //这个箭头函数是在window上下文中定义的。
+        let sayColors = () => console.log(this.colors);
+
+        sayColors();//red
+
+        w.sayColors = sayColors;
+        w.sayColors();//red
+    </script>
+</body>
+</html>

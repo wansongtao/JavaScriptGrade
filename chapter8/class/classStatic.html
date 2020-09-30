@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>静态类</title>
+</head>
+<body>
+    <script>
+        class Person {
+            constructor() {
+                //添加到this的所有内容都会存在于不同的实例上
+                this.locate = () => console.log('instance', this);
+            }
+
+            //定义在类的原型对象上
+            locate() {
+                console.log('prototype', this);
+            }
+
+            //定义在类本身上
+            static locate() {
+                console.log('class', this);
+            }
+
+            sayName () {
+                console.log(`${this.name} ${Person.age}`);
+            }
+        }
+
+        let p = new Person();
+
+        p.locate();//instance Person
+        Person.prototype.locate();//prototype Object
+        Person.locate();//class, class Person {...}
+
+        //类定义并不显式支持在原型或类上添加成员数据，但在类定义外部，可以手动添加。
+        //在类上定义数据成员
+        Person.age = 10;
+
+        //在原型上定义数据成员
+        Person.prototype.name = 'Jake';
+
+        let x = new Person();
+        x.sayName();//Jake 10
+        console.log(x.name);//Jake
+    </script>
+</body>
+</html>

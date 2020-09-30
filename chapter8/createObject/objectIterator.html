@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象迭代</title>
+</head>
+<body>
+    <script>
+        //Object.values()返回对象值的数组，Object.entries()返回键/值对的数组。
+        const o = {
+            foo: 'bar',
+            baz: 1,
+            qux: {}
+        };
+
+        //非字符串属性会被转换为字符串输出，这两个方法执行对象的浅复制。
+        console.log(Object.values(o));//["bar", 1, {…}]
+        console.log(Object.entries(o));
+        //[["foo", "bar"], ["baz", 1], ["qux", {…}]]
+
+        //符号属性会被忽略
+        const sym = Symbol();
+        const j = {
+            [sym]:'foo'
+        };
+
+        console.log(Object.values(j));//[]
+        console.log(Object.entries(j));//[]
+    </script>
+</body>
+</html>

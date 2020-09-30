@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>继承</title>
+</head>
+<body>
+    <script>
+        //使用extends关键字，就可以继承任何拥有[[Construct]]和原型的对象。
+        class Person {
+            constructor (name = 'wst', age = 22){
+                this.name = name;
+                this.age = age;
+            }
+
+            sayName() {
+                console.log(`${this.name}  ${this.age}`);
+            }
+        }
+
+        //继承类
+        class Student extends Person{
+            showName(Name){
+                console.log(Name);
+            }
+        }
+
+        let b = new Student('lst', 20);
+
+        console.log(b instanceof Student);//true
+        console.log(b instanceof Person);//true
+        b.sayName();//lst  20
+        b.showName('wst');//wst
+
+        let a = new Person('wst', '22');
+        a.sayName();//wst  22
+        //a.showName();//Uncaught TypeError: a.showName is not a function
+
+        //继承普通构造函数
+        function Test(){}
+
+        class PersonStu extends Test{}
+
+        let e = new PersonStu();
+        console.log(e instanceof PersonStu);//true
+        console.log(e instanceof Test);//true
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组</title>
+</head>
+<body>
+    <script>
+        //from()用于将类数组结构转换为数组实例。
+        console.log(Array.from('Matt'));//['M','a','t','t']
+
+        //可以使用from()将集合和映射转换为一个新数组
+        const m = new Map().set(1,2).set(3,4);
+
+        const s = new Set().add(1).add(2).add(3).add(4);
+
+        console.log(Array.from(m));//[[1, 2],[3, 4] ]
+        console.log(Array.from(s));//[1, 2, 3, 4]
+
+        //from()对现有数组执行浅复制
+        const a1 = [1, 2, 3, 4];
+        const a2 = Array.from(a1);
+
+        console.log(a2);//[1, 2, 3, 4]
+        console.log(a1 === a2);//false`
+
+        //Array.from()还接收第二个可选的映射函数参数
+        const arr1 = [1, 2, 3, 4];
+        const arr2 = Array.from(arr1, x => x**2);
+        console.log(arr2);//[1, 4, 9, 16]
+
+        //还有第三个可选参数，用于指定映射函数中this的值
+        const arr3 = Array.from(arr1, function(x) {return x**this.exponent}, {exponent: 2});
+        console.log(arr3);//[1, 4, 9, 16]
+
+        //Array.of()可以把一组参数转换为数组
+        console.log(Array.of(1, 2, 3, 4));//[1, 2, 3, 4]
+
+
+        const myArr = ["foo", "bar", "baz", "qux"];
+        //keys()返回数组索引的迭代器
+        console.log(Array.from(myArr.keys()));//[1, 2, 3, 4]
+        //values()返回数组元素的迭代器
+        console.log(Array.from(myArr.values()));//["foo", "bar", "baz", "qux"]
+        //entries()返回索引/值得迭代器
+        console.log(Array.from(myArr.entries()));
+        //[[0, "foo"], [1, "bar"], [2, "baz"], [3, "qux"]]
+
+        for(const [keys, values] of myArr.entries()){
+            console.log([keys, values]);//[0, "foo"]
+            console.log(keys);//0
+            console.log(values);//foo
+        }
+    </script>
+</body>
+</html>

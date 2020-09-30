@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性验证</title>
+</head>
+<body>
+    <script>
+        //所有赋值操作都会触发set()捕获器
+        const target = {
+            onlyNumbersGoHere: 0
+        };
+
+        const proxy = new Proxy(target, {
+            set(target, property, value) {
+                //只有值为数值类型时，才允许修改
+                if(typeof value !== 'number'){
+                    return false;
+                }else {
+                    return Reflect.set(...arguments);
+                }
+            }
+        });
+
+        proxy.onlyNumbersGoHere = 1;
+        console.log(proxy.onlyNumbersGoHere);//1
+
+        //修改失败
+        proxy.onlyNumbersGoHere = '2';
+        console.log(proxy.onlyNumbersGoHere);//1
+    </script>
+</body>
+</html>

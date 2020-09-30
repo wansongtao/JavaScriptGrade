@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象解构</title>
+</head>
+<body>
+    <script>
+        //不使用对象解构
+        let person = {
+            name: 'Matt',
+            age: 27
+        };
+
+        let personName = person.name, personAge = person.age;
+        console.log(personName);
+        console.log(personAge);
+
+        //使用对象解构
+        let pDeconstruction = {
+            name: 'Matt',
+            age: 27
+        };
+
+        let {name: personName1, age: personAge1} = pDeconstruction;
+        console.log(personName1);//Matt
+        console.log(personAge1);//27
+
+        //让变量直接使用属性的名称，如果引用的属性不存在，则该变量的值就是undefined
+        let {name, age, job} = pDeconstruction;
+        console.log(name);
+        console.log(age);
+        console.log(job);//undefined
+
+        let likeFruit = {
+            fruitName: 'orange'
+        };
+
+        //在解构赋值的同时定义默认值，引用的属性不存在时，变量的值为默认值
+        let {fruitName = 'apple', jobs='Software engineer'} = likeFruit;
+
+        console.log(fruitName);//orange
+        
+        console.log(jobs);//Software engineer
+
+        // let personName, personAge;
+
+        // let person = {
+        //     name: 'Matt',
+        //     age: 27
+        // };
+
+        // ({name: personName, age: personAge} = person);
+        // console.log(personName, personAge);//Matt, 27
+    </script>
+</body>
+</html>

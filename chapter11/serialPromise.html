@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>串行执行期约</title>
+</head>
+<body>
+    <script>
+        async function addTwo(x) {return x + 2}
+        async function addThree(x) {return x + 3}
+        async function addFive(x) {return x + 5}
+
+        async function addTen(x) {
+            for (const fn of [addTwo, addThree, addFive]){
+                x = await fn(x);
+            }
+            return x;
+        }
+
+        addTen(9).then(console.log);//19 
+    </script>
+</body>
+</html>

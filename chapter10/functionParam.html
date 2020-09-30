@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数参数</title>
+</head>
+<body>
+    <script>
+        //arguments对象的值始终会与对应的命名参数同步
+        //即修改arguments[1]的值也会修改num2的值，但它们在内存中还是分开的。
+        function doAdd(num1, num2) {
+            arguments[1] = 10;
+
+            //num2 = 10
+            console.log(arguments[0] + num2);//11
+        }
+
+        doAdd(1, 2);
+    </script>
+</body>
+</html>

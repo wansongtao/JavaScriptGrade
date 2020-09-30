@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>嵌套解构</title>
+</head>
+<body>
+    <script>
+        let person = {
+            name: 'Matt',
+            age: 27,
+            job: {
+                title: 'Software engineer'
+            }
+        };
+
+        let personCopy = {};
+        //嵌套解构(变量在外部定义了，要使用括号解构)
+        ({
+            name: personCopy.name,
+            age: personCopy.age,
+            job: personCopy.job
+        } = person);
+
+        console.log(person);//{name: "Matt", age: 27, job: {…}}
+        console.log(personCopy);//{name: "Matt", age: 27, job: {…}}
+
+        //解构赋值使用嵌套结构
+        let { job: {title}} = person;
+        console.log(title);//Software engineer
+    </script>
+</body>
+</html>

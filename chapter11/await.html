@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>await关键字</title>
+</head>
+<body>
+    <script>
+        //使用await关键字可以暂停异步函数代码的执行，等待期约解决。
+
+        // 使用期约
+        let p = new Promise((resolve, reject) => setTimeout(resolve, 1000, 3));
+        p.then((x) => console.log(x));//3
+
+        //使用异步函数和await
+        async function foo() {
+            let p = new Promise((resolve, reject) => setTimeout(resolve, 1000, 3));
+            //await关键字会暂停执行异步函数后面的代码，让出JavaScript运行时的执行线程。
+            console.log(await p);
+        }
+
+        foo();//3
+    </script>
+</body>
+</html>

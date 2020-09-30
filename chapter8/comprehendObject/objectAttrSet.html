@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的属性修改</title>
+</head>
+<body>
+    <script>
+        /*
+            configurable：表示属性是否可以通过delete删除并重新定义，是
+            否可以修改它的特性，以及是否可以把它改为访问器属性。
+            enumerable：表示属性是否可以通过for-in循环返回。
+            writable：表示属性的值是否可以被修改。
+            value：包含属性实际的值。
+        */
+        let person = {};
+
+        Object.defineProperty(person, "name", {
+            writable: false,  //默认true, false(只读)
+            value: 'wst'
+        });
+
+        console.log(person.name);//wst
+        person.name = 'lst';//修改只读属性会被忽略
+        console.log(person.name);//wst
+
+
+        //一个属性被定义为不可配置之后，就不能再变回可配置的了。
+        //再次调用Object.defineProperty()并修改非writable属性会导致错误
+        Object.defineProperty(person, "age", {
+            configurable: false, //默认true，false(不可配置)
+            value: 22
+        });
+
+        console.log(person.age);//22
+        delete person.age;//删除不了
+        console.log(person.age);//22
+
+
+        //arr属性不能被for...in枚举出来
+        Object.defineProperty(person, "arr", {
+            enumerable: false,
+            value: [1, 2, 3, 4]
+        });
+
+        for(const i in person){
+            console.log(i);
+        }
+    </script>
+</body>
+</html>

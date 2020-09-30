@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>call方法</title>
+</head>
+<body>
+    <script>
+        //call()方法接收多个参数：第一个参数为函数内this的值
+        //剩下的是要传给被调用函数的参数（逐个传递）
+        function sum(num1, num2) {
+            return num1 + num2;
+        }
+
+        function callSum(num1, num2) {
+            return sum.call(this, num1, num2);
+        }
+
+        console.log(callSum(10, 10));//20
+
+        //apply()和call()方法真正强大的地方是控制函数调用
+        //上下文即函数体内this的值.
+        window.color = 'red';
+        let o = {
+            color: 'blue'
+        };
+
+        function sayColor() {
+            console.log(this.color);
+        }
+
+        sayColor();//red
+        sayColor.call(this);//red
+        sayColor.call(window);//red
+
+        sayColor.call(o);//blue
+    </script>
+</body>
+</html>

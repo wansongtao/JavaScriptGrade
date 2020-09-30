@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>string-replace</title>
+</head>
+<body>
+    <script>
+        let str = 'my name is wansongtao.';
+
+        //replace()方法的第二个参数可以是一个函数
+        //这个函数会收到3个参数：match 匹配的字符串   pos匹配项在字符串中的开始位置
+        //originText 原字符串
+        let result = str.replace(/[wst]/g, (match, pos, originText) => {
+            switch(match){
+                case 'w':
+                    return '&';
+                case 's':
+                    return '*';
+                case 't': 
+                    return '(';
+                default: 
+                    return '';
+            }
+        });
+
+        console.log(result);//my name i* &an*ong(ao.
+
+
+        let message = 'abcd';
+
+        console.log(message.codePointAt(1));//98
+        console.log(String.fromCodePoint(99));//c
+    </script>
+</body>
+</html>

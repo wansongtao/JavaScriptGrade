@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>派生类中super的调用</title>
+</head>
+<body>
+    <script>
+        //如果没有定义类构造函数，在实例化派生类时会调用super()，而且
+        //会传入所有传给派生类的参数。
+        class Vehicle {
+            constructor(name) {
+                this.name = name;
+            }
+        }
+
+        //相当于将这个类转换为下面的样子
+        class Bus extends Vehicle {}
+
+        // class Bus extends Vehicle {
+        //     constructor(name) {
+        //         super(name);
+        //     }
+        // }
+
+        console.log(new Bus('wst'));//Bus {name: "wst"}
+
+
+
+        //如果在派生类中显式定义了构造函数，则要么必须在
+        //其中调用super()，要么必须在其中返回一个对象。
+        class Vehicle3{}
+
+        class Car1 extends Vehicle3 {}
+
+        class Bus1 extends Vehicle3 {
+            constructor() {
+                super();
+            }
+        }
+
+        class Van1 extends Vehicle3 {
+            constructor() {
+                return {};
+            }
+        }
+
+        console.log(new Car1());//Car1 {}
+        console.log(new Bus1());//Bus1 {}
+        console.log(new Van1());//{}
+    </script>
+</body>
+</html>

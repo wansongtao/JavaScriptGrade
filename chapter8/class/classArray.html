@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类可以在任何地方定义</title>
+</head>
+<body>
+    <script>
+        //在数组中定义类
+        let classList = [
+            class {
+                constructor(id) {
+                    this.id_ = id;  //下划线代表这个属性不希望在外部被访问
+                    console.log(`instance ${this.id_}`);
+                }
+            }
+        ];
+
+        let foo = new classList[0]('1998');//instance 1998
+
+        //类也可以立即实例化
+        //因为是一个类表达式，所以类名是可选的
+        let p = new class Foo {
+            constructor(x) {
+                console.log(x);
+            }
+        }('wst');
+
+        console.log(p);//Foo {}
+    </script>
+</body>
+</html>

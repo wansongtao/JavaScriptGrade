@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扩展操作符</title>
+</head>
+<body>
+    <script>
+        //在给函数传参时，有时候可能不需要传入一个数组，而是要分别传入数组的元素。
+        /*
+        对可迭代对象应用扩展操作符（...），并将其作为一个参数传入，可以将可迭代对象拆分
+        并将迭代返回的每个值单独传入。
+        */
+        let values = [1, 2, 3, 4];
+
+        function getSum() {
+            let sum = 0;
+            for(let i = 0; i < arguments.length; i++) {
+                sum += arguments[i];
+            }
+            //对于函数中的arguments对象而言，它并不知道扩展操作符的
+            //存在，而是按照调用函数时传入的参数接收每一个值。
+            console.log(arguments.length);//4 4 6
+
+            return sum;
+        }
+
+        console.log(getSum(1, 2, 3, 4));//10
+        console.log(getSum(...values));//10
+
+        //在使用扩展操作符传参时，可以在其前面或后面再传入其他的值。
+        console.log(getSum(5, ...values, 5));//20
+    </script>
+</body>
+</html>

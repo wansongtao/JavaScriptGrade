@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性值简写、可计算属性、简写方法名</title>
+</head>
+<body>
+    <script>
+        let name = 'matt';
+
+        //简写属性名只要使用变量名就会自动被解释为同名的属性键。(ES6新增)
+        let person = {
+            name
+        };
+        console.log(person);//{name: "matt"}
+        //相当于
+        // let person = {
+        //     name: name
+        // };
+
+        const nameKey = 'name';
+        const ageKey = 'age';
+        const jobKey = 'job';
+
+        //使用中括号可以完成动态属性赋值，ES6新增语法
+        let person2 = {
+            [nameKey]: 'matt',
+            [ageKey]: 27,
+            [jobKey]: 'Software engineer'
+        };
+
+        console.log(person2);//{name: "matt", age: 27, job: "Software engineer"}
+
+        //简写方法名
+        let personOne = {
+            name,
+            sayName(name) {
+                console.log(`My name is ${name}`);
+            }
+        };
+        //相当于
+        // let personOne = {
+        //     name: name,
+        //     sayName: function(name){
+        //         console.log(`My name is ${name}`);
+        //     }
+        // };
+
+        personOne.sayName('matt');//My name is matt
+    </script>
+</body>
+</html>

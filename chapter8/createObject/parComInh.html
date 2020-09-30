@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>寄生式组合继承</title>
+</head>
+<body>
+    
+    <script>
+        //组合继承存在效率问题，其中父类构造函数始终会被调用两次
+        function inheritPrototype(subType, superType){
+            let prototype = Object(superType.prototype);
+
+            prototype.constructor = subType;
+            subType.prototype = prototype;
+        }
+
+        function superType(name){
+            this.name = name;
+            this.colors = ['red', 'blue', 'green'];
+        }
+
+        superType.prototype.sayName = function() {
+            console.log(this.name);
+        }
+
+        function SubType(name, age){
+            superType.call(this, name);
+            this.age = age;
+        }
+
+        inheritPrototype(SubType, superType);
+
+        SubType.prototype.sayAge = function() {
+            console.log(this.age);
+        };
+
+        let test = new SubType('wst', 22);
+
+        test.sayAge();//22
+    </script>
+</body>
+</html>

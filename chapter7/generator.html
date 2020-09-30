@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成器</title>
+</head>
+<body>
+    <script>
+        //生成器函数
+        function* generatorFn(){
+            yield 'foo';
+            yield 'bar';
+            return 'baz';
+        }
+
+        //生成器函数只会在初次调用next方法后执行
+        let generatorObj = generatorFn();
+        
+
+        console.log(generatorObj.next());//{value: "foo", done: false}
+        console.log(generatorObj.next());//{value: "bar", done: false}
+        console.log(generatorObj.next());//{value: "baz", done: true}
+
+        //生成器函数内部的执行流程会针对每个生成器对象区分作用域。
+        let generatorObj2 = generatorFn();
+
+        console.log(generatorObj2.next());//{value: "foo", done: false}
+        console.log(generatorObj2.next());//{value: "bar", done: false}
+        console.log(generatorObj2.next());//{value: "baz", done: true}
+
+
+        function* generatorOne(){
+            yield 1;
+            yield 2;
+            yield 3;
+        }
+
+        for (const x of generatorOne()){
+            console.log(x);// 1  2  3
+        }
+
+    </script>
+</body>
+</html>

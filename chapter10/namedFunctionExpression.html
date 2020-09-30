@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>命名函数表达式</title>
+</head>
+<body>
+    <script>
+        //即使把函数赋值给另一个变量，函数表达式的名称f也不变
+        //因此，递归调用不会有问题.
+        const factorial = (function f(num) {
+            if (num <= 1) {
+                return 1;
+            }else {
+                return num * f(num - 1);
+            }
+        });
+    </script>
+</body>
+</html>

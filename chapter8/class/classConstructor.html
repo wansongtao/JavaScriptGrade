@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类构造函数</title>
+</head>
+<body>
+    <script>
+        class Person {
+            constructor(name) {
+                console.log(arguments.length);
+                this.name = name || null;
+            }
+        }
+
+        let p1 = new Person();//0
+        console.log(p1.name);//null
+
+        //没有参数可以不写括号
+        let p2 = new Person;//0
+        console.log(p2.name);//null
+
+        let p3 = new Person('wst');//1
+        console.log(p3.name);//wst
+    </script>
+</body>
+</html>

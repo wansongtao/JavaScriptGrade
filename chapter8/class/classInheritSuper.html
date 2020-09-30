@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在派生类中调用父类构造函数</title>
+</head>
+<body>
+    <script>
+        //派生类的方法可以通过super关键字引用它们的原型
+        class Vehicle {
+            constructor() {
+                this.hasEngine = true;
+            }
+        }
+
+        class Bus extends Vehicle {
+            constructor() {
+                //不要在调用super()之前引用this，否则会抛出ReferenceError
+                super();//相当于super.constructor()
+
+                console.log(this instanceof Vehicle);//true
+                console.log(this);//Bus {hasEngine: true}
+            }
+        }
+
+        new Bus();
+
+
+        //在静态方法中可以通过super调用继承的类上定义的静态方法。
+        class Person {
+            static identify() {
+                console.log('Person');
+            }
+        }
+
+        class Student extends Person {
+            static identify() {
+                //通过super调用父类上定义的静态方法
+                super.identify();
+            }
+        }
+
+        Student.identify();//Person
+
+        //super()的行为如同调用构造函数，如果需要给父类构造函数传参，则需要手动传入
+        class Stu {
+            constructor(name) {
+                this.name = name;
+            }
+        }
+
+        class Stu2 extends Stu {
+            constructor(name) {
+                //调用super()会调用父类构造函数，并将返回的实例赋值给this
+                super(name);
+            }
+        }
+
+        console.log(new Stu2('wst'));//Stu2 {name: "wst"}
+    </script>
+</body>
+</html>

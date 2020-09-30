@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>继承内置类型</title>
+</head>
+<body>
+    <script>
+        class SuperArray extends Array {
+            shuffle() {
+                //洗牌算法
+                for (let i = this.length - 1; i > 0; i--){
+                    const j = Math.floor(Math.random() * (i + 1));
+
+                    //this = [1, 2, 3, 4, 5] => this = [5, 2, 3, 4, 1]
+                    //this[4] = 5, this[0] = 1 => this[4] = 1, this[0] = 5
+                    //数组解构（数组也是一种对象）
+                    [this[i], this[j]] = [this[j], this[i]];
+
+                    // let temp = this[i];
+                    // this[i] = this[j];
+                    // this[j] = temp;
+                }
+            }
+        }
+
+        let a = new SuperArray(1, 2, 3, 4, 5);
+
+        //console.log(a instanceof Array);//true
+       // console.log(a instanceof SuperArray);//true
+
+        //console.log(a);//SuperArray(5) [1, 2, 3, 4, 5]
+        a.shuffle();
+        console.log(a);//SuperArray(5) [1, 4, 5, 2, 3]
+    </script>
+</body>
+</html>
