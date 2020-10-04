@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>检测插件</title>
+</head>
+<body>
+    <script>
+        /*可以通过plugins数组来确定插件，这个数组包含以下内容:
+        name: 插件名称，description：插件介绍，
+        filename：插件的文件名
+        length：由当前插件处理的MIME类型数量。
+        */
+
+        //插件检测，IE10及更低版本无效
+        let hasPlugin = name => {
+            //比较的字符串全部转换为小写，可以避免大小写问题
+            name = name.toLowerCase();
+
+            for (let plugin of window.navigator.plugins) {
+                if (plugin.name.toLocaleLowerCase().indexOf(name) > -1) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        alert(hasPlugin("quicktime"));
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IE10及更低版本中检测插件</title>
+</head>
+<body>
+    <script>
+        function hasIEPlugin(name) {
+            try {
+                //在IE中检测插件要使用专有的ActiveXObject
+                new ActiveXObject(name);
+                return true;
+            }catch(ex) {
+                return false;
+            }
+        }
+
+        //检测flash
+        alert(hasIEPlugin("ShockwaveFlash.ShockwaveFlash"));
+    </script>
+</body>
+</html>
