@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取当前设备的地理位置</title>
+</head>
+<body>
+    <script>
+        //google的Chrome浏览器不允许获取用户地理位置
+        navigator.geolocation.getCurrentPosition((position) => {
+            //时间戳：1601901967978
+            console.log(position.timestamp);
+
+            /*坐标信息：{ latitude: 23.132047276936895, longitude: 113.4
+                2288496314711, altitude: 0, accuracy: 131, alti
+                tudeAccuracy: 0, heading: null, speed: null }*/
+            console.log(position.coords);
+
+            //纬度：23.132015154419843
+            console.log(position.coords.latitude);
+
+            //经度：113.42288380357982
+            console.log(position.coords.longitude);
+
+            //以米为单位的进度：182
+            console.log(position.coords.accuracy);
+
+            //海拔：0
+            console.log(position.coords.altitude);
+        }, (e) => {
+            //报错信息
+            console.log(e.code);//1
+            console.log(e.message);//User denied Geolocation
+        });
+
+        
+    </script>
+</body>
+</html>

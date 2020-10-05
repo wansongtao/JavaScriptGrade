@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户代理</title>
+</head>
+<body>
+    <script>
+        //Mozilla/5.0 (Windows NT 10.0; Win64; x64) 
+        //AppleWebKit/537.36 (KHTML, like Gecko) 
+        //Chrome/85.0.4183.121 Safari/537.36
+        console.log(window.navigator.userAgent);
+
+        //伪造用户代理
+        window.navigator.__defineGetter__('userAgent', () => 'foobar');
+
+        console.log(window.navigator.userAgent);//foobar
+    </script>
+</body>
+</html>

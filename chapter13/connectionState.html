@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>移动设备联网状态</title>
+</head>
+<body>
+    <script>
+        const connectionStateChange = () => console.log(navigator.onLine);
+
+        window.addEventListener('online', connectionStateChange);
+        window.addEventListener('offline', connectionStateChange);
+
+        //设备联网时，true
+        //设备断网时，false
+    </script>
+</body>
+</html>
