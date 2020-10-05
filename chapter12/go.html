@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航</title>
+</head>
+<body>
+    <script>
+        //后退一页
+        history.go(-1);
+
+        //前进一页
+        history.go(1);
+
+        //导航到最近的wrox.com页面，可能前进也可能后退
+        history.go('wrox.com');
+
+        //后退一页
+        history.back();
+
+        //前进一页
+        history.forward();
+
+        if(history.length == 1) {
+            //这是用户窗口的第一个页面
+        }
+    </script>
+</body>
+</html>
