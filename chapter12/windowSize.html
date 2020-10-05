@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>窗口大小</title>
+</head>
+<body>
+    <script>
+        /*获取浏览器窗口中页面视口的大小（不包含浏览器边框和工具栏）*/
+        let pageWidth = window.innerWidth,
+            pageHight = window.innerHeight;
+
+        if (typeof pageWidth != 'number') {
+            //检查页面是否处于标准模式
+            if (document.compatMode == 'CSS1Compat') {
+                pageWidth = document.documentElement.clientWidth;
+                pageHight = document.documentElement.clientHeight;
+            }else {
+                pageWidth = document.body.clientWidth;
+                pageHight = document.body.clientHeight;
+            }
+        }
+        //width: 1920  height: 975
+        document.write(`width: ${pageWidth}&nbsp;&nbsp;height: ${pageHight}<br>`);
+
+        /*返回浏览器窗口自身的大小（不管是在最外层window上使用还是窗格frame中使用）*/
+        let allWidth = window.outerWidth, allHight = window.outerHeight;
+        //width: 1920  height: 1080
+        document.write(`width: ${allWidth}&nbsp;&nbsp;height: ${allHight}`);
+    </script>
+</body>
+</html>

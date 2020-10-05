@@ -9,6 +9,7 @@
     <a href="file:///C:/Programming/JavaScript/JavaScriptHighGrade/chapter12/queryCharacter.html?name=wst&age=22">点我</a>
     <script>
         try{
+            //name=wst&age=22
             let qs = location.search.length > 0 ? location.search.substring(1) : "";
 
             if(qs == "") {
@@ -18,7 +19,8 @@
             //name=wst&age=22
             let arr = qs.split("&"), arg = {};
 
-            arr = arr.map(arr => arr.split("="));
+            //map() 方法创建一个新数组，其结果是该数组中的每个元素是调用一次提供的函数后的返回值。
+            arr = arr.map(item => item.split("="));
 
             for(let item of arr) {
                 //decodeURIComponent()解码encodeURIComponent()编码的数据

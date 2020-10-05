@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视口位置</title>
+</head>
+<body>
+    <script>
+        //相对于当前视口向下滚动100像素
+        window.scrollBy(0, 100);
+
+        //相对于当前视口向右滚动40像素
+        window.scrollBy(40, 0);
+
+        //滚动到页面左上角
+        window.scrollTo(0, 0);
+
+        //正常滚动
+        window.scrollTo({
+            left: 100,
+            top: 100,
+            behavior: 'auto'
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹窗</title>
+</head>
+<body>
+    <script>
+        //弹出窗口可以调用top.close()来关闭自己
+        let wroxWin = window.open('https://baidu.com', 'baidu', 
+        'height=400,width=400,top=100,left=100,resizable=yes');
+
+        //缩放
+        wroxWin.resizeTo(800, 800);
+
+        //移动
+        wroxWin.moveTo(60, 60);
+
+        //关闭窗口
+        wroxWin.close();
+    </script>
+</body>
+</html>

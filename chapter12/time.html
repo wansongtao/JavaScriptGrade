@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定时器</title>
+</head>
+<body>
+    <script>
+        //设置超时任务
+        // let timeId = setTimeout(() => {
+        //     alert('hello world!');
+        // }, 1000);
+
+        // //清除超时任务
+        // clearTimeout(timeId);
+
+        //设置定时器
+        let time2Id = setInterval(() => {
+            document.write('hello world.');
+        }, 1000);
+
+        //清除定时器
+        clearInterval(time2Id);
+    </script>
+</body>
+</html>
