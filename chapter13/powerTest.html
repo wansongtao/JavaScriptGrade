@@ -19,6 +19,12 @@
         }else {
             return false;
         }
+
+        //不要这样做！不够特殊
+        let isFirefox = !!(navigator.vendor && navigator.vendorSub);
+
+        //不要这样做！假设太多
+        let isIE = !!(document.all && document.uniqueID);
     </script>
 </body>
 </html>
