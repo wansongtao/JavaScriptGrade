@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>替换节点</title>
+</head>
+<body>
+    <ul id="test">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+
+    <script>
+        /*replaceChild()方法接收两个参数：要插入的节
+        点和要替换的节点。*/
+        const ul = document.getElementById('test');
+
+        //替换第一个子节点
+        const newNode1 = document.createElement('li');
+        newNode1.innerText = 0;
+        //console.log(ul, ul.firstElementChild, ul.lastElementChild);
+        let returnNode1 = ul.replaceChild(newNode1, ul.firstElementChild);
+
+        //替换最后一个子节点
+        const newNode2 = document.createElement('li');
+        newNode2.innerText = 5;
+        let returnNode2 = ul.replaceChild(newNode2, ul.lastElementChild);
+    </script>
+</body>
+</html>

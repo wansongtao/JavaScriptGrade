@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操纵节点</title>
+</head>
+<body>
+    <div id="test">
+        <ul>
+            <li>first</li>
+            <li>
+                <a href="javascript:;">点我</a>
+            </li>
+            <li>hah</li>
+            <li>hello</li>
+            <li>world</li>
+        </ul>
+    </div>
+    <script>
+        window.onload = function() {
+            let div = document.getElementById("test");
+
+            //document.getElementByTagName()方法返回一个节点列表
+            let ul = document.getElementsByTagName('ul');
+            ul = ul[0];
+
+            console.log(ul);
+
+            //添加新节点
+            let li = document.createElement('li');
+            li.innerText = 'new node';
+            //appendChild方法返回新添加的节点
+            let returnNode = ul.appendChild(li);
+            console.log(returnNode == li);//true
+            console.log(ul.lastChild == li);//true
+
+            //如果把文档中已经存在的节点传给appendChild()，则
+            //这个节点会从之前的位置被转移到新位置。
+            let liObj = document.createElement('li');
+            li.innerText = 'first';
+            let reNode = ul.appendChild(li);
+            ul.appendChild(li);
+            console.log(reNode == ul.firstChild);//false
+            console.log(reNode == ul.lastChild);//true
+        };
+    </script>
+</body>
+</html>

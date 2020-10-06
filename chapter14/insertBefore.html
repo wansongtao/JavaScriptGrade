@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在特定位置添加节点</title>
+</head>
+<body>
+    <ul id="test">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+        /*insertBefore()方法接收两个参数：要插入的节点和参
+        照节点。调用这个方法后，要插入的节点会变成参照节点的
+        前一个同胞节点，并被返回。*/
+        let ul = document.getElementById('test');
+
+        //如果参照节点为null，则这个方法和appendChild方法效果一样
+        const newNode1 = document.createElement('li');
+        newNode1.innerText = 4;
+        let returnNode1 = ul.insertBefore(newNode1, null);
+        console.log(returnNode1 == ul.lastChild);//true
+
+        //作为新的第一个子节点插入
+        const newNode2 = document.createElement('li');
+        newNode2.innerText = 0;
+        let returnNode2 = ul.insertBefore(newNode2, ul.firstChild);
+        console.log(returnNode2 == ul.firstChild);//true
+
+        //插入最后一个子节点前面
+        const newNode3 = document.createElement('li');
+        newNode3.innerText = 10;
+        let returnNode3 = ul.insertBefore(newNode3, ul.lastChild);
+        console.log(returnNode3 == ul.childNodes[ul.childNodes.length - 2]);//true
+    </script>
+</body>
+</html>
