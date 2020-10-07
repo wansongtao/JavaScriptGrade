@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MutationObserver接口</title>
+</head>
+<body>
+    <script>
+        //新创建的这个实例不会关联DOM的任何部分。可以使用observe方法关联DOM
+        let observer = new MutationObserver(() => console.log('body attri changed'));
+
+        //这个方法接收两个必须的参数：要观察其变化的DOM节点，以及一个
+        //MutationObserverInit对象。
+        observer.observe(document.body, {attributes: true});//观察属性变化
+
+        document.body.className = 'foo';
+        console.log('changed body class');
+        //changed body class
+        //body attri changed
+
+        //MutationRecord
+        let newObserver = new MutationObserver((MutationRecord, MutationObserver) => console.log(MutationRecord, MutationObserver));
+
+        newObserver.observe(document.body, { attributes: true});
+
+        document.body.setAttribute('data-name', 'wst');
+
+        /*同步调用disconnect方法之后，不仅会停止此后变化事件的回调
+        也会抛弃已经加入任务队列要异步执行的回调*/
+        newObserver.disconnect();
+
+        document.body.className = 'lst';
+
+
+        //takeRecords方法: 清空记录队列，并返回其中的所有MutationRecord实例
+        let wstServer = new MutationObserver((MutationRecords) => console.log(MutationRecords));
+
+        wstServer.observe(document.body, {attributes: true});
+
+        document.body.className = 'foo';
+        document.body.className = 'bar';
+
+        console.log(wstServer.takeRecords());//[MutationRecord, MutationRecord]
+        console.log(wstServer.takeRecords());//[]
+    </script>
+</body>
+</html>

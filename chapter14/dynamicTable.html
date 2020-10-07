@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态表格</title>
+    <style>
+        table {
+            /* 合并表格边框 */
+            border-collapse: collapse;
+        }
+
+        td {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #000;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function createTable() {
+            //创建表格
+            const table = document.createElement('table');
+
+            //创建标题
+            table.createCaption();
+            //添加文本
+            table.caption.append('测试');
+
+            //创建表头
+            table.createTHead();
+            table.tHead.insertRow(0);
+            table.tHead.rows[0].insertCell(0);
+            table.tHead.rows[0].cells[0].append('nums');
+            table.tHead.rows[0].insertCell(1);
+            table.tHead.rows[0].cells[1].append('nums');
+
+            //创建表体
+            const tbody = document.createElement('tbody');
+            table.appendChild(tbody);
+
+            //创建第一行
+            tbody.insertRow(0);
+
+            //创建第一行内的第一列
+            tbody.rows[0].insertCell(0);
+            //添加文本
+            tbody.rows[0].cells[0].appendChild(document.createTextNode('1'));
+
+            tbody.rows[0].insertCell(1);
+            tbody.rows[0].cells[1].appendChild(document.createTextNode('2'));
+
+            //创建第二行
+            tbody.insertRow(1);
+            tbody.rows[1].insertCell(0);
+            tbody.rows[1].cells[0].appendChild(document.createTextNode('3'));
+            tbody.rows[1].insertCell(1);
+            tbody.rows[1].cells[1].appendChild(document.createTextNode('4'));
+
+            document.body.appendChild(table);
+        }
+
+        createTable();
+    </script>
+</body>
+</html>

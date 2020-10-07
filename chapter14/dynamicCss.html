@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态样式</title>
+</head>
+<body>
+    <script>
+        //动态添加link元素
+        function loadStyles(url) {
+            let link = document.createElement('link');
+
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = url;
+            
+            let head = document.getElementsByTagName("head")[0];
+            head.appendChild(link);
+        }
+    </script>
+</body>
+</html>

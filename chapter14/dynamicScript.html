@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态脚本</title>
+</head>
+<body>
+    <script>
+        //script元素上有一个text属性，可以用来添加js代码
+        let script = document.createElement('script');
+        script.text = "function sayHi(){alert('hi')} sayHi();";
+        document.body.appendChild(script);
+    </script>
+</body>
+</html>
