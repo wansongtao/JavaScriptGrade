@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档子节点</title>
+</head>
+<body>
+    <script>
+        const html = document.documentElement;
+
+        console.log(html === document.childNodes[1]);//true
+        console.log(html === document.firstElementChild);//true
+
+        const body = document.body; //取得对body的引用
+        console.log(body);
+
+        const doctype = document.doctype; //取得对<!doctype>的引用
+        console.log(doctype); //  <!DOCTYPE html>
+
+        //读取文档标题
+        const originalTitle = document.title;
+        console.log(originalTitle);
+
+        //修改文档标题
+        document.title = "New page title";
+
+        //取得完整的URL
+        const url = document.URL;
+        //http://127.0.0.1:5500/chapter14/documentElement.html
+        console.log(url);
+
+        //取得域名
+        const domain = document.domain;
+        console.log(domain);//127.0.0.1
+
+        //不能给这个属性设置URL中不包含的值
+        document.domain = 'wrox.com';//出错
+
+        //取得来源
+        const referrer = document.referrer;
+        console.log(referrer);// 空字符串
+
+        document.domain = 'wrox.com';  //放松，成功
+        document.domain = 'p2p.wrox.com';  //收紧，错误
+    </script>
+</body>
+</html>

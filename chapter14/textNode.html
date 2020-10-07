@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本节点</title>
+    <style>
+        .message {
+            width: 100px;
+            height: 100px;
+            border: 1px solid orange;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let div = document.createElement('div');
+        div.className = 'message';
+
+        let textNode = document.createTextNode('Hello world!');
+        div.appendChild(textNode);
+
+        let anotherTextNode = document.createTextNode('Yippee');
+        div.appendChild(anotherTextNode);
+
+        document.body.appendChild(div);
+        
+        console.log(div.childNodes.length);//2
+
+        //合并文本节点
+        div.normalize();
+        console.log(div.childNodes.length);//1
+        console.log(div.firstChild.nodeValue);//Hello world!Yippee
+
+        //拆分文本节点
+        let newNode = div.firstChild.splitText(5);
+        console.log(div.firstChild.nodeValue);//Hello
+        console.log(div.lastChild.nodeValue);// world!Yippee
+        console.log(div.childNodes.length);//2
+    </script>
+</body>
+</html>

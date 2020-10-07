@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档片段</title>
+</head>
+<body>
+    <ul id="myList"></ul>
+    <script>
+        //先创建文档片段，再将元素添加到文档片段中，最后将文档片段添加到dom中。
+        //可以避免浏览器多次渲染页面
+        let fragment = document.createDocumentFragment();
+        let ul = document.getElementById('myList');
+
+        for(let i = 0; i < 3; i++) {
+            let li = document.createElement('li');
+
+            li.appendChild(document.createTextNode(`Item ${i + 1}`));
+            fragment.appendChild(li);
+        }
+
+        //在把文档片段作为参数传给这些方法时，这个文档片段的所有
+        //子节点会被添加到文档中相应的位置。
+        ul.appendChild(fragment);
+    </script>
+</body>
+</html>

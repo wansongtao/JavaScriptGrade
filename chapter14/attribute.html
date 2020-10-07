@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素属性</title>
+</head>
+<body>
+    <div id="myDiv" data-name="wst" class="lst">test</div>
+
+    <script>
+        const div = document.getElementById('myDiv');
+
+        //获取自定义属性的值
+        let val = div.getAttribute('data-name');
+        console.log(val);//wst
+
+        //设置属性
+        div.setAttribute('data-name', 'lst');
+
+        //移除属性
+        div.removeAttribute('data-name');
+
+        //attributes属性
+        //获取id的值
+        let id = div.attributes.getNamedItem('id').nodeValue;
+        //let id = div.attributes['id'].nodeValue;(简写)
+        console.log(id);//myDiv
+
+        //设置属性的值
+        div.attributes['id'].nodeValue = 'some';
+
+        //删除指定名字的属性
+        let oldAttr = div.attributes.removeNamedItem('class');
+        console.log(oldAttr);//class="lst"
+
+        //添加新属性
+        div.attributes.setNamedItem(oldAttr);
+
+        //创建新的attr节点
+        let attr = document.createAttribute('align');
+        attr.value = 'left';
+        div.setAttribute(attr);
+    </script>
+</body>
+</html>

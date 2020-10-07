@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML元素</title>
+</head>
+<body>
+    <div id="myDiv" class="bd" title="Body text" lang="en" dir="ltr"></div>
+    <script>
+        const div = document.getElementById('myDiv');
+
+        //获取元素的属性
+        console.log(div.id);//myDiv
+        console.log(div.className);//bd
+        console.log(div.title);//Body text
+        console.log(div.lang);//en
+        console.log(div.dir);//ltr
+
+        //修改元素的属性
+        div.id = 'someOtherId';
+        div.className = 'ft';
+        div.title = 'Some other text';
+        div.lang = 'fr';
+        div.dir = 'rtl';
+
+        console.log(div.id);
+        console.log(div.className);
+        console.log(div.title);
+        console.log(div.lang);
+        console.log(div.dir);
+    </script>
+</body>
+</html>

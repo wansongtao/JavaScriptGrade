@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取元素</title>
+</head>
+<body>
+    <img src="a.jpg" alt="null" name="wst">
+    <script>
+        const img = document.getElementsByTagName('img');
+
+        //HTMLCollection [img, wst: img]
+        console.log(img);
+
+        /*HTMLCollection对象还有一个额外的方法namedItem()，可
+        通过标签的name属性取得某一项的引用。*/
+        //<img src="a.jpg" alt="null" name="wst">
+        console.log(img.namedItem('wst'));
+        console.log(img['wst']);
+
+        //获取页面中所有元素的HTMLCollection对象
+        const allElement = document.getElementsByTagName('*');
+        console.log(allElement);
+    </script>
+</body>
+</html>
