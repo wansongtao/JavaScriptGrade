@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内嵌窗格iframe</title>
+</head>
+<body>
+    <h1>iframe测试</h1>
+    <ul>
+        <li><a href="text1.html">one</a></li>
+        <li><a href="text2.html">two</a></li>
+        <li><a href="text3.html">three</a></li>
+    </ul>
+    <div id="iframe"></div>
+    <!-- <iframe src="text1.html" frameborder="0"></iframe> -->
+    <!-- <iframe src="https://baidu.com" frameborder="0" width="600" height="600"></iframe> -->
+    <script>
+        let a = document.getElementsByTagName('a');
+
+        //转成数组
+        a = Array.from(a);
+
+        a.forEach(element => {
+            element.addEventListener('click', (e) => {
+                e.preventDefault();//禁止跳转页面
+
+                //e.target获取当前点击的a元素
+                console.log(e.target);
+
+                //创建iframe内嵌窗格
+                const iframe = document.createElement('iframe');
+
+                //将iframe元素的src属性改为当前点击的a元素的href属性
+                iframe.setAttribute('src', e.target.getAttribute('href'));
+
+                //当ID为iframe的div的子元素不为空时，清除其子元素
+                let node = document.getElementById('iframe').firstElementChild;
+                node == null? '' : document.getElementById('iframe').removeChild(node);
+
+                //将内嵌窗格iframe添加到ID为iframe的div中
+                document.getElementById('iframe').appendChild(iframe);
+            });
+        });
+    </script>
+</body>
+</html>
