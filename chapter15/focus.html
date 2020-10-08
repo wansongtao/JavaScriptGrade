@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>焦点管理</title>
+</head>
+<body>
+    <button id="myButton">点我</button>
+    <script>
+        //document.activeElement始终包含当前拥有焦点的
+        //DOM元素
+        let btn = document.getElementById('myButton');
+        btn.focus();
+
+        console.log(document.activeElement === btn);//true
+
+        //document.hasFocus()方法返回布尔值，表示文档是否拥有焦点。
+        console.log(document.hasFocus());//true
+    </script>
+</body>
+</html>

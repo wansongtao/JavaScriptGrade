@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>outerHTML属性</title>
+</head>
+<body>
+    <div id="content">
+        <p>失败并不可怕，害怕失败才真正可怕。</p>
+        <ul>
+            <li>item1</li>
+            <li>item2</li>
+            <li>item3</li>
+        </ul>
+    </div>
+
+    <script>
+        const div = document.getElementById('content');
+
+        //读取outerHTML属性时，会返回调用它的元素（及其所有后代元素）的字符串
+        console.log(div.outerHTML);//<div>...</div>
+
+        //1.相当于2的所有代码
+        div.outerHTML = '<p>This is a paragraph.</p>';
+        
+        //2.创建元素
+        // let p = document.createElement('p');
+        // p.appendChild(document.createTextNode('This is a paragraph.'));
+        // div.parentNode.replaceChild(p, div);
+    </script>
+</body>
+</html>

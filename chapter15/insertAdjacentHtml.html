@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>插入标签的新方法</title>
+</head>
+<body>
+    <!-- <p>Hello world!</p>
+    Hello world! -->
+    <div id="wst">
+        <!-- <p>Hello world!</p> -->
+    </div>
+    <!-- <p>Hello world!</p> -->
+
+    <script>
+        const div = document.getElementById('wst');
+
+        //作为div的前一个同胞节点插入
+        div.insertAdjacentHTML('beforeBegin', '<p>Hello world!</p>');
+
+        //作为div的前一个同胞文本节点插入
+        div.insertAdjacentText('beforebegin', 'Hello world!');
+
+        //作为div的第一个子节点插入
+        div.insertAdjacentHTML('afterbegin', '<p>Hello world!</p>');
+
+        //作为div的最后一个子节点插入
+        div.insertAdjacentHTML('beforeend', '<p>Hello world!</p>');
+
+        //作为div的下一个同胞节点插入
+        div.insertAdjacentHTML('afterend', '<p>Hello world!</p>');
+    </script>
+</body>
+</html>

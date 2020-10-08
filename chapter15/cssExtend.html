@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css类扩展</title>
+</head>
+<body>
+    <ul>
+        <li class="wst lst"><a href=""></a></li>
+        <li class="wst"><a href=""></a></li>
+        <li class="wst"><a href=""></a></li>
+        <li class="lst"></li>
+        <li class="lst"></li>
+        <li class="lst"></li>
+    </ul>
+    <div class="lst"></div>
+    <script>
+        //取得所有类名中包含‘wst’和‘lst’的元素
+        let allEle = document.getElementsByClassName('wst lst');
+
+        console.log(allEle);
+
+        //删除‘lst’类
+        allEle[0].classList.remove('lst');
+        
+        const div = document.getElementsByTagName('div')[0];
+
+        //添加‘wst’类
+        div.classList.add('wst');
+
+        //切换‘wst’类，有删除，没有添加
+        div.classList.toggle('wst');
+
+        //检测类名
+        console.log(div.classList.contains('lst'));//true
+    </script>
+</body>
+</html>

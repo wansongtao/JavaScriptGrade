@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMLDocument扩展</title>
+</head>
+<body>
+    <p>失败并不可怕，害怕失败才真正可拍。</p>
+    <script>
+        if (document.readyState == 'loading') {
+            console.log('文档正在加载');
+        }
+
+        window.onload = function() {
+            if (document.readyState == 'complete'){
+                console.log('文档加载完成');
+            }
+
+            //compatMode属性，指示浏览器当前处于什么渲染模式
+            if (document.compatMode == 'CSS1Compat') {
+                console.log('Standards mode');
+            }else {
+                console.log('Quirks mode');
+            }
+
+            //HTML5增加了document.head属性，指向文档的<head>元素
+            let head = document.head;
+            console.log(head);
+
+            //characterSet属性表示文档实际使用的字符集，也可以用
+            //来指定新字符集。默认“UTF-16”
+            console.log(document.characterSet);//UTF-8
+            document.characterSet = "UTF-16";
+        }
+    </script>
+</body>
+</html>
