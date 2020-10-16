@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>defaultView</title>
+    <style>
+        p {
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <p>失败并不可怕，害怕失败才真正可怕。</p>
+    <div class="box">
+        <p>失败并不可怕，害怕失败才真正可怕。</p>
+        <p>失败并不可怕，害怕失败才真正可怕。</p>
+        <p>失败并不可怕，害怕失败才真正可怕。</p>
+    </div>
+    <script>
+        //defaultView，是一个指向拥有当前文档的窗口（或<frame>）的指针。
+        //IE8及以前的版本使用parentWindow属性。
+        console.log(document.defaultView);//window
+    </script>
+</body>
+
+</html>

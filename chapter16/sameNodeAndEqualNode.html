@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>两个用于比较节点的方法</title>
+</head>
+<body>
+    <script>
+        let div1 = document.createElement('div');
+        div1.setAttribute('class', 'box');
+
+        let div2 = document.createElement('div');
+        div2.setAttribute('class', 'box');
+
+        //isSameNode()方法：接收一个节点参数，如果这个节点
+        //与参考节点相同，则返回true。（即引用同一个对象）
+        console.log(div1.isSameNode(div1));//true
+
+        /*isEqualNode()方法：接收一个节点参数，如果这个节点
+        与参考节点相等，则返回true。节点相等：节点类型相同，拥有
+        相等的属性。
+        */
+        console.log(div1.isEqualNode(div2));//true
+        console.log(div1.isSameNode(div2));//false
+    </script>
+</body>
+</html>

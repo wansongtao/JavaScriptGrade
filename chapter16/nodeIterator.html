@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>遍历节点</title>
+</head>
+<body>
+    <div id="div1">
+        <p><b>Hello</b> world!</p>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+
+    <script>
+        let div = document.getElementById('div1');
+
+        /*
+        param1: 作为根节点的节点
+        param2：数值代码，表示应该访问那些节点，元素节点（NodeFilter.SHOW_ELEMENT）
+        param3：filter，NodeFilter对象或函数，表示是否接收或跳过特定节点。
+        param4：布尔值，在HTML中，设置false
+        */
+        let iterator = document.createNodeIterator(div, NodeFilter.SHOW_ELEMENT, null, false);
+
+        let node = iterator.nextNode();
+        while (node !== null) {
+            console.log(node.tagName);
+            node = iterator.nextNode();
+        }
+
+        //遍历div里面的li元素
+        let filter = function(nodeOne) {
+            return nodeOne.tagName.toLowerCase() == "li" ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+        };
+
+        let iteratorOne = document.createNodeIterator(div, NodeFilter.SHOW_ELEMENT, filter, false);
+
+        let nodeOne = iteratorOne.nextNode();
+
+        while(nodeOne !== null) {
+            console.log(nodeOne.tagName);
+            nodeOne = iteratorOne.nextNode();
+        }
+    </script>
+</body>
+</html>

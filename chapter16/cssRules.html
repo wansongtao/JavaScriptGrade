@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css规则</title>
+    <link rel="stylesheet" href="./cssrules.css">
+    <style>
+        div.box {
+            background-color: #000;
+            width: 100px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        失败并不可怕，害怕失败才真正可怕。
+    </div>
+
+    <script>
+        //document.styleSheets表示文档中可用的样式表集合。
+        //document.styleSheets返回的样式表可能会因浏览器而异。
+        let sheet = document.styleSheets[1];
+        let rules = sheet.cssRules || sheet.rules;//取得规则集合
+        let rule = rules[0];//取得第一条规则
+
+        
+        console.log(rule.selectorText);//div.box
+
+        console.log(rule.style.cssText);  
+        // background-color: rgb(0, 0, 0); width: 100px; height: 200px;
+
+        console.log(rule.style.backgroundColor);//rgb(0, 0, 0)
+        console.log(rule.style.width);//100px
+        console.log(rule.style.height);//200px
+
+        //添加新规则，不常用
+        sheet.insertRule('body {background-color: blue;}', 0);
+
+        //删除规则，不常用
+        sheet.deleteRule(0);
+    </script>
+</body>
+</html>

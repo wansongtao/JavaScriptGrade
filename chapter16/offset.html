@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>偏移尺寸</title>
+    <style>
+        .parent {
+            width: 1000px;
+            height: 500px;
+            padding: 20px;
+            background: #000;
+        }
+        .child {
+            width: 800px;
+            height: 400px;
+            margin: 0 auto;
+            padding: 10px;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="child">
+            要确定一个元素在页面中的偏移量，可以把它的offsetLeft
+            和offsetTop属性分别与offsetParent的相同属性相加，一直加到根元素。
+        </div>
+    </div>
+
+    <script>
+        //得到元素的左偏移量
+        function getElementLeft(element) {
+            //offsetLeft: 元素左边框外侧距离包含元素左边框内侧的像素数。
+            //相对于包含元素的（offsetParent）
+            let actualLeft = element.offsetLeft;
+            let current = element.offsetParent;
+
+            while(current !== null) {
+                actualLeft += current.offsetLeft;
+                current = current.offsetParent;
+            }
+
+            return actualLeft;
+        }
+
+        //得到元素上偏移量
+        function getElementTop(element) {
+            let actualTop = element.offsetTop;
+            let current = element.offsetParent;
+
+            while(current !== null) {
+                actualTop += current.offsetTop;
+                current = current.offsetParent;
+            }
+
+            return actualTop;
+        }
+
+        const childObj = document.getElementsByClassName('child')[0];
+
+        console.log(getElementLeft(childObj) + "px");
+        console.log(getElementTop(childObj) + "px");
+    </script>
+</body>
+</html>
