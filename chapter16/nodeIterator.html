@@ -22,7 +22,7 @@
         /*
         param1: 作为根节点的节点
         param2：数值代码，表示应该访问那些节点，元素节点（NodeFilter.SHOW_ELEMENT）
-        param3：filter，NodeFilter对象或函数，表示是否接收或跳过特定节点。
+        param3：filter，NodeFilter对象或函数，表示是否接收或跳过特定节点。(节点过滤器)
         param4：布尔值，在HTML中，设置false
         */
         let iterator = document.createNodeIterator(div, NodeFilter.SHOW_ELEMENT, null, false);

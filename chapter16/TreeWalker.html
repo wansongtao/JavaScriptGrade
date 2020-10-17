@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节点遍历</title>
+</head>
+<body>
+    <div id="box">
+        <p><b>Hello</b> world!</p>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+
+    <script>
+        const divObj = document.getElementById('box');
+
+        //输出一个节点下的所有li节点
+        function getChildNodeLi(eleObj) {
+            //过滤器函数
+            let filter = function(node) {
+                //NodeFilter.FILTER_ACCEPT 接收， NodeFilter.FILTER_SKIP 跳过
+                return node.tagName.toLowerCase() == "li" ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+            };
+
+            /*createTreeWalker()方法：接收4个参数
+            param1: 根节点，
+            param2：节点类型，
+            param3：过滤器函数或对象，可以为null，
+            param4：一个表示是否扩展实体引用的布尔值，HTML中永远是false*/
+            let DomIterator = document.createTreeWalker(eleObj, NodeFilter.SHOW_ELEMENT, filter, false);
+
+            //nextNode()方法在DOM子树中以深度优先方式前进一步
+            let node = DomIterator.nextNode();
+
+            while (node !== null) {
+                console.log(node.tagName);
+                node = DomIterator.nextNode();
+            }
+        }
+
+        function walkerMethod(eleObj) {
+            let walker = document.createTreeWalker(eleObj, NodeFilter.SHOW_ELEMENT, null, false);
+
+            walker.firstChild();  //第一个子节点
+            walker.nextSibling();  //当前节点的下一个兄弟节点
+
+            let node = walker.lastChild();//最后一个子节点
+
+            while (node !== null) {
+                console.log(node.tagName);//li
+
+                node = walker.previousSibling();  //前一个兄弟节点
+            }
+
+            //当前节点的父节点
+            console.log(walker.parentNode().tagName);//ul
+        }
+
+        getChildNodeLi(divObj);
+        walkerMethod(divObj);
+    </script>
+</body>
+</html>
