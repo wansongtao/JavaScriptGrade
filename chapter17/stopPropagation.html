@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阻止事件流在DOM结构中传播，取消后续事件捕获或冒泡</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        哈哈哈
+    </div>
+
+    <script>
+        const obj = document.getElementsByClassName('box')[0];
+
+        obj.onclick = (e) => {
+            console.log('Clicked');
+
+            //如果不阻止冒泡，则点击obj这个对象，会触发在obj对象上绑定的事件
+            //也会触发绑定在obj祖先节点上的相同事件
+            e.stopPropagation();
+        };
+
+        document.body.onclick = (e) => {
+            console.log('body clicked');
+        };
+    </script>
+</body>
+</html>

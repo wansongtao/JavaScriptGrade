@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修饰键</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        const div = document.getElementById('box');
+
+        div.addEventListener('click', (event) => {
+            let keys = [];
+
+            if (event.shiftKey) {
+                keys.push('shift');
+            }
+
+            if(event.ctrlKey) {
+                keys.push('ctrl');
+            }
+
+            if(event.altKey) {
+                keys.push('alt');
+            }
+
+            if(event.metaKey) {
+                keys.push('meta');
+            }
+
+            console.log(keys.join(','));
+        });
+    </script>
+</body>
+</html>

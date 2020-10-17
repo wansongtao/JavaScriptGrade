@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IE8及更早版本获取页面坐标</title>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+
+    <script>
+        const divObj = document.getElementById('box');
+
+        divObj.attachEvent('onclick', (event) => {
+            let pageX = event.pageX, pageY = event.pageY;
+
+            if(pageX === undefined) {
+                pageX = event.clientX + (document.body.scrollLeft || document.documentElement.scrollLeft);
+            }
+
+            if(pageY === undefined) {
+                pageY = event.clientY + (document.body.scrollTop || document.documentElement.scrollTop);
+            }
+
+            console.log(`Page coordinates:${pageX}, ${pageY}`);
+        });
+    </script>
+</body>
+</html>
