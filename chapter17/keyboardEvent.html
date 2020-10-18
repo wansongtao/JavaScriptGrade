@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>键盘事件</title>
+</head>
+<body>
+    <input type="text" id="myText">
+
+    <script>
+        const textBox = document.getElementById('myText');
+
+        textBox.addEventListener('keyup', (event) => {
+            //对于字母和数字键，keyCode的值与小写字母和数字的ASCII编码一致。
+            console.log(event.keyCode);
+
+            //DOM3新增的属性：在按下字符键时，key的值等于文本字符（'a'/'A'）
+            //在按下非字符键时，key的值是键名（如'shift'）
+            console.log(event.key);
+            // console.log(event.char);
+        });
+    </script>
+</body>
+</html>

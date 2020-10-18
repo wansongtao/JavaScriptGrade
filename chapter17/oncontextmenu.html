@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上下文菜单</title>
+</head>
+<body>
+    <div id="myDiv">
+        失败并不可怕，害怕失败才真正可怕
+
+    </div>
+
+    <ul id="myMenu" style="width: 100px; height: 100px;background: rgb(216, 184, 184);visibility: hidden;">
+        <li><a href="">1</a></li>
+        <li><a href="">2</a></li>
+        <li><a href="">3</a></li>
+    </ul>
+
+    <script>
+        const obj = document.getElementById('myDiv');
+
+        //鼠标右键添加自定义菜单
+        obj.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+
+            let menu = document.getElementById('myMenu');
+            menu.style.left = e.clientX + 'px';
+            menu.style.top = e.clientY + 'px';
+            menu.style.visibility = 'visible';
+        });
+
+        //单击页面隐藏自定义菜单
+        document.addEventListener('click', (e) => {
+            document.getElementById('myMenu').style.visibility = 'hidden';
+        });
+    </script>
+</body>
+</html>
