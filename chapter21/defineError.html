@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义错误</title>
+</head>
+<body>
+    <div class="err">
+        <p>失败并不可怕，害怕失败才真正可怕。</p>
+    </div>
+    <script>
+        
+        function process(values) {
+            if (!(values instanceof Array)) {
+                //使用适当的信息创建自定义错误可以有效提高代码的可维护性
+                throw new Error('process(): Argument must be an array.');
+            }
+
+            values.sort();
+        }
+
+        try {
+            process(1);
+        }catch(ex) {
+            // console.log(ex.message);
+            // throw ex.message;
+            console.error(ex.message);
+        }
+    </script>
+</body>
+</html>

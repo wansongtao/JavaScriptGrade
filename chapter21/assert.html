@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义错误函数</title>
+</head>
+<body>
+    <script>
+        //在大型应用程序中，自定义错误通常使用assert()函数抛出错误
+        function assert(condition, message) {
+            //在条件为false时，抛出错误
+            if (!condition) {
+                throw new Error(message);
+            }
+        }
+
+        function divide(num1, num2) {
+            //使用assert函数可以减少抛出自定义错误所需的代码量，并且让代码更好理解
+            assert(typeof num1 === 'number' && typeof num2 === 'number', "divide(): Both arguments must be numbers.");
+
+            return num1 / num2;
+        }
+    </script>
+</body>
+</html>
