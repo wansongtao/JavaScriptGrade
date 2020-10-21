@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通知api</title>
+</head>
+<body>
+    <script>
+        //请求授权
+        Notification.requestPermission().then((permission) => {
+            //granted意味着用户明确授权了显示通知的权限
+            console.log(permission);
+        });
+
+        //创建实例
+        const msg = new Notification('Title text!', {
+            body: 'Body text!',
+            image: '../images/chutian.jpg',
+            vibrate: true
+        });
+
+        //3秒后关闭
+        setTimeout(() => {
+            msg.close();
+        }, 3000);
+
+        //在发生错误阻止通知显示时触发
+        msg.onerror = () => {
+            console.log('error');
+        };
+    </script>
+</body>
+</html>
