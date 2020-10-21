@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阻止用户复制</title>
+</head>
+<body>
+    <p>失败并不可怕，害怕失败才真正可怕。</p>
+
+    <script>
+        // const pObj = document.getElementsByTagName('p')[0];
+
+        document.documentElement.addEventListener('copy', (e) => {
+            e.preventDefault();
+            console.log('本网站不支持复制内容。');
+        });
+    </script>
+</body>
+</html>

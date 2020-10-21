@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单字段</title>
+</head>
+<body>
+    <form action="" id="form1">
+        <input type="text" name="username">
+        <input type="radio" name="sex" value="male">
+        <input type="radio" name="sex" value="female">
+        <input type="submit" value="submit" name="btn">
+    </form>
+
+    <script>
+        const myform = document.getElementById('form1');
+        console.log(myform);
+
+        //取得表单中的第一个字段
+        let field1 = myform.elements[0];
+        console.log(field1);
+
+        //取得表单中名为sex的字段
+        let field2 = myform.elements["sex"];
+        console.log(field2);
+
+        let fieldCount = myform.elements.length;
+        console.log(fieldCount);
+
+        //避免多次提交表单
+        myform.addEventListener('submit', (e) => {
+            let obj = e.target;
+
+            let btnObj = obj.elements["btn"];
+
+            //禁用提交按钮
+            btnObj.disabled = true;
+        });
+    </script>
+</body>
+</html>
