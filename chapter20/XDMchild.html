@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跨文档消息子页面</title>
+</head>
+<body>
+    <h2>跨文档消息</h2>
+
+    <script>
+        //接收到XDM消息后，window对象上会触发message事件。
+        window.addEventListener('message', (e) => {
+            /*e对象上包含三个参数：
+            1.data：作为第一个参数传递给postMessage()的字符串数据。
+            2.origin：发送消息的文档源。
+            3.source：发送消息的文档中window对象的处理。
+            */
+            //确保来自预期发送者
+            if(e.origin === location.origin) {
+                //打印数据
+                console.log(e.data);
+
+                //可选：向来源窗口发送一条消息
+                // e.source.postMessage('Received!', location.origin);
+            }
+        });
+    </script>
+</body>
+</html>

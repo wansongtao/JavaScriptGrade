@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跨文档消息</title>
+</head>
+<body>
+    <p>失败并不可怕，害怕失败才真正可怕。</p>
+    <iframe src="XDMchild.html" frameborder="2" id="myframe"></iframe>
+
+    <script>
+        window.onload = () => {
+            //contentWindow返回相应窗格的window对象
+            const iframeWindow = document.getElementById('myframe').contentWindow;
+
+            //向内嵌窗格中发送一条消息，并指定源。如果源匹配，那么消息将会交付到内嵌窗格。
+            iframeWindow.postMessage('A secret', location.origin);
+            console.log(location.origin);  //XDM.html:19 http://127.0.0.1:5500
+        };
+    </script>
+</body>
+</html>
