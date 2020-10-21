@@ -7,13 +7,36 @@
 </head>
 <body>
     <select name="liked" id="liked">
-        <option value="apple" cheaked>apple</option>
-        <option value="orange">orange</option>
+        <option value="apple">apple</option>
+        <option value="orange" selected>orange</option>
         <option value="tomato">tomato</option>
     </select>
 
     <script>
-        
+        const selectObj = document.getElementById('liked');
+
+        //选项文本
+        let text = selectObj.options[0].text;
+        console.log(text);
+
+        //选项值
+        let value = selectObj.options[0].value;
+        console.log(value);
+
+        //selected布尔值，表示是否选中了当前选项。
+        let isCheaked = selectObj.options[0].selected;
+        console.log(isCheaked);
+
+        //获取选中项（对于只允许选择一项）
+        let selectedOption = selectObj.options[selectObj.selectedIndex];
+        console.log(selectedOption);
+
+        //添加选项
+        let newOption = new Option('Option text', 'Option value');
+        selectObj.add(newOption, undefined);  //添加到末尾
+
+        //移除选项
+        selectObj.remove(3); // 移除第四项
     </script>
 </body>
 </html>

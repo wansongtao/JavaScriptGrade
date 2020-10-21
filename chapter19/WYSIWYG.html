@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>富文本编辑</title>
+</head>
+<body>
+    <!-- <div style="width: 200px;height: 100px;" contenteditable></div> -->
+    <p>失败并不可怕，害怕失败才真正可怕。</p>
+    <iframe src="" frameborder="1" name="richedit" style="height: 100px;width: 100px;"></iframe>
+
+    <script>
+        window.addEventListener('load', () => {
+            frames["richedit"].document.designMode = "on";
+
+            //在内嵌窗格中切换斜体文本样式
+            frames["richedit"].document.execCommand("italic", false, null);
+
+            //在内嵌窗格中为内容添加h1标签
+            frames["richedit"].document.execCommand('formatblock', false, "<h1>");
+
+            //在内嵌窗格中创建指向www.baidu.com的链接
+            frames["richedit"].document.execCommand('createlink', false, "https://www.baidu.com");
+        });
+    </script>
+</body>
+</html>
