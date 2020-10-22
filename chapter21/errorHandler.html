@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>error事件</title>
+</head>
+<body>
+    <script>
+        //message: 错误消息，url：发生错误的URL，line：行号
+        window.onerror = (message, url, line) => {
+            console.error(message);
+
+            //可以返回false来阻止浏览器默认报告错误的行为。
+            return false;
+        };
+    </script>
+</body>
+</html>

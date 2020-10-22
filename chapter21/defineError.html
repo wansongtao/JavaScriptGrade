@@ -14,19 +14,22 @@
         function process(values) {
             if (!(values instanceof Array)) {
                 //使用适当的信息创建自定义错误可以有效提高代码的可维护性
-                throw new Error('process(): Argument must be an array.');
+                // throw new Error('process(): Argument must be an array.');
+                throw new TypeError('process(): Argument must be an array.');
             }
 
             values.sort();
         }
 
-        try {
-            process(1);
-        }catch(ex) {
-            // console.log(ex.message);
-            // throw ex.message;
-            console.error(ex.message);
-        }
+        // try {
+        //     process(1);
+        // }catch(ex) {
+        //     // console.log(ex.message);
+        //     // throw ex.message;
+        //     console.error(ex.message);
+        // }
+
+        process(1);
     </script>
 </body>
 </html>

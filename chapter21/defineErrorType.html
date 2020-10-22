@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义错误类型</title>
+</head>
+<body>
+    <script>
+        //自定义一个错误类型CustomError，继承Error
+        class CustomError extends Error {
+            constructor(message) {
+                //调用父类构造函数，并传参
+                super(message);
+
+                //this指向父类构造函数中的this
+                this.name = "CustomError";
+                this.message = message;
+            }
+        }
+
+        throw new CustomError('my message');
+    </script>
+</body>
+</html>
