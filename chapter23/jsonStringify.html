@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>序列化选项</title>
+</head>
+<body>
+    <script>
+        /*JSON.stringify()方法除了要序列化的对象，还可以接收两个参数。
+        第一个参数是过滤器，可以是数组或函数
+        第二个参数是用于缩进结果JSON字符串的选项*/
+
+        let book = {
+            title: 'Professional JavaScript',
+            authors: [
+                'Nicholas C.Zakas',
+                'Matt Frisbie'
+            ],
+            edition: 4,
+            year: 2017
+        };
+
+        //json字符串中只包含title和edition属性
+        let jsonText = JSON.stringify(book, ['title', 'edition']);
+        console.log(jsonText);  //{"title":"Professional JavaScript","edition":4}
+
+        let jsonText1 = JSON.stringify(book, (key, value) => {
+            switch(key) {
+                case "authors": 
+                    return value.join(',');
+                case 'year': 
+                    return 5000;
+                case 'edition': //返回undefined忽略该属性
+                    return undefined;
+                default: 
+                    return value;
+            }
+        });
+
+        //{"title":"Professional JavaScript","authors":"Nicholas C.Zakas,Matt Frisbie","year":5000}
+        console.log(jsonText1);
+
+        //第三个参数表示每一级缩进的空格数，最大缩进值为10
+        let jsonText2 = JSON.stringify(book, ['title', 'edition'], 4);
+        /*
+            {
+                "title": "Professional JavaScript",
+                "edition": 4
+            }
+        */
+        console.log(jsonText2);
+
+
+        let jsonText3 = JSON.stringify(book, ['title', 'edition'], '--');
+        /*
+            {
+            --"title": "Professional JavaScript",
+            --"edition": 4
+            }
+        */
+        console.log(jsonText3);
+
+
+        let books = {
+            title: 'Professional JavaScript',
+            authors: [
+                'Nicholas C.Zakas',
+                'Matt Frisbie'
+            ],
+            edition: 4,
+            year: '2020-10-23',
+            toJSON: function() {
+                //自定义json序列化
+                return this.year;
+            }
+        };
+
+        // "2020-10-23"
+        console.log(JSON.stringify(books, ['title', 'year'], 2));
+    </script>
+</body>
+</html>

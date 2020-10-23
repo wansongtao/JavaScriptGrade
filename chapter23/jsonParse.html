@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解析选项</title>
+</head>
+<body>
+    <script>
+
+        let book = {
+            title: 'Professional JavaScript',
+            authors: [
+                'Nicholas C.Zakas',
+                'Matt Frisbie'
+            ],
+            edition: 4,
+            year: '2017-11-01'
+        }
+
+        let josnText = JSON.stringify(book);
+
+        /*JSON.parse()方法接收一个额外的参数，这个函数会
+        针对每个键/值对都调用一次。*/
+        let bookCopy = JSON.parse(josnText, (key, value) => {
+            return key == 'year' ? new Date(value) : value;
+        });
+
+        console.log(bookCopy.year.getFullYear());  //2017
+    </script>
+</body>
+</html>
