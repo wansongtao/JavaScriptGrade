@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用post模拟表单提交</title>
+</head>
+<body>
+    <script>
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                if ( (xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+                    console.log(xhr.responseText);
+                } else {
+                    console.log('Request was unsuccessful: ' + xhr.status);
+                }
+            }
+        };
+
+        //methodurl:后台要有这个方法，并作出响应
+        xhr.open('post', 'methodurl', true);
+
+        //模拟表单提交，需要设置的特定头部
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send('name=wst&age=22');
+    </script>
+</body>
+</html>

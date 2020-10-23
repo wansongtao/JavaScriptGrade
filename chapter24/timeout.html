@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超时属性</title>
+</head>
+<body>
+    <script>
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                if ( (xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+                    console.log(JSON.parse(xhr.responseText));
+                } else {
+                    console.log('Request was unsuccessful: ' + xhr.status);
+                }
+            }
+        };
+
+        xhr.open('get', 'text.json', true);
+
+        xhr.timeout = 1000;  //设置1秒超时
+        xhr.ontimeout = () => {
+            //超时后，打印信息
+            console.log('Request did not return in a second');
+        };
+
+        xhr.send(null);
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>load事件</title>
+</head>
+<body>
+    <script>
+        const xhr = new XMLHttpRequest();
+
+        //load事件在响应接收完成后立即触发，就不用检查readyState属性了
+        xhr.onload = () => {
+            if ( (xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+                console.log(xhr.responseText);
+            } else {
+                console.log('request was unsuccessful: ' + xhr.status);
+            }
+        };
+
+        xhr.open('get', 'text.json', true);
+        // xhr.overrideMimeType('application/json');  //用于重写xhr响应的mime类型
+        xhr.send(null);
+    </script>
+</body>
+</html>

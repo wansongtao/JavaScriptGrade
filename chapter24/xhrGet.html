@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用XHR</title>
+</head>
+<body>
+    <script>
+        //DOM0风格发送异步请求
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState == 4) {
+                if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+                    console.log(xhr.responseText);
+                }else {
+                    console.log(xhr.status);
+                }
+            }
+        };
+
+        //open方法接收三个参数：请求类型、请求URL、请求是否异步的布尔值
+        xhr.open('get', 'text.json', true);
+
+        //设置请求头
+        xhr.setRequestHeader('Content-Type', 'text/html;charset=utf-8');
+
+        //send方法接收一个参数：作为请求体发送的数据
+        xhr.send(null);
+
+        //取消异步请求
+        // xhr.abort();
+    </script>
+</body>
+</html>

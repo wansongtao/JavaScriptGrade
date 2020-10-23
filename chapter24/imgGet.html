@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片探测</title>
+</head>
+<body>
+    <script>
+        let img = new Image();
+
+        img.onload = img.onerror = () => {
+            console.log('done');
+        };
+
+        //设置完src属性之后请求就开始了
+        img.src = 'http://www.example.com/test?name=wst';
+    </script>
+</body>
+</html>

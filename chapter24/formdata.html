@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FormData类型</title>
+</head>
+<body>
+    <form action="">
+        <input type="text" name="username" value="wst">
+        <input type="number" name="age" id="" value="22">
+    </form>
+
+    <script>
+        //FormData类型便于表单序列化
+        let data = new FormData();
+
+        //append方法接收两个参数：键和值
+        data.append('name', 'wst');
+
+        //可以将表单中的数据作为键值对填充进去
+        let dataOne = new FormData(document.forms[0]);
+
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                }
+            }
+        };
+
+        xhr.open('post', 'method.js', true);
+
+        //使用FormData就不用给xhr对象显式设置任何请求头部
+        xhr.send(dataOne);
+    </script>
+</body>
+</html>
