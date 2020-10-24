@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据库</title>
+</head>
+<body>
+    <script>
+        let db, request, version = 1;
+
+        let users = {
+            username: '007',
+            firstName: 'James',
+            lastName: 'Bond',
+            password: 'foo'
+        };
+
+        //调用indexedDB.open()方法，并给它传入一个要打开的数据库名称。
+        //如果已存在，则会打开，否则创建并打开。版本号必须为整数
+        request = indexedDB.open('admin', version);
+
+        request.onerror = (event) => {
+            //event.target.errorCode中存储表示问题的错误码
+            console.log(`Failed to open: ${event.target.errorCode}`);
+        };
+
+        request.onsuccess = (event) => {
+            //通过event.target.result访问数据库实例
+            db = event.target.result;
+
+            //IDBDatabase {name: "admin", version: 1, objectStoreNames: DOMStringList, onabort: null, onclose: null, …}
+            console.log(db);
+        };
+
+        
+
+        // request.onupgradeneeded = (event) => {
+        //     const db = event.target.result;
+
+        //     if (db.objectStoreNames.contains('users')) {
+        //         db.deleteObjectStore('users');
+        //     }
+
+        //     db.createObjectStore('users', {keyPath: 'username'});
+        // };
+    </script>
+</body>
+</html>

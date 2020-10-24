@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会话存储</title>
+</head>
+<body>
+    <p>sessionStorage对象与服务器会话紧密相关，所以在运行本地文件时不能使用。</p>
+    <script>
+        //使用方法存储数据
+        sessionStorage.setItem('name', 'wst');
+
+        //使用属性存储数据
+        sessionStorage.age = 22;
+
+        //使用方法取得数据
+        console.log(sessionStorage.getItem('name'));//wst
+
+        //使用属性取得数据
+        console.log(sessionStorage.age);//22
+
+        //结合length属性和key()方法遍历所有值
+        for (let i = 0, len = sessionStorage.length; i < len; i++) {
+            let key = sessionStorage.key(i);
+
+            let value = sessionStorage.getItem(key);
+            console.log(key, value);//age 22  name wst
+        }
+
+        //会返回内置方法和属性
+        // for (let key in sessionStorage) {
+        //     let value = sessionStorage.getItem(key);
+        //     console.log(key, value);
+        // }
+
+        //使用delete删除值
+        delete sessionStorage.name;
+
+        //使用方法删除值
+        sessionStorage.removeItem('age');
+    </script>
+</body>
+</html>

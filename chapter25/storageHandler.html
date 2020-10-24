@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>存储事件</title>
+</head>
+<body>
+    <script>
+        localStorage.name = 'wst';
+        localStorage.setItem('age', 22);
+
+        //每当storage对象发生变化时，都会在文档上触发storage事件
+        
+        /*事件在同一个域下的不同页面之间触发，即在A页面注册了
+        storge的监听处理，只有在跟A同域名下的B页面操作storage
+        对象，A页面才会被触发storage事件*/
+        window.addEventListener('storage', (e) => {
+            console.log('hhhh');
+            console.log(`domain: ${e.domain} key: ${e.key} newValue: ${e.newValue} oldValue: ${e.oldValue}`);
+        });
+
+        delete localStorage.age;
+
+    </script>
+</body>
+</html>
