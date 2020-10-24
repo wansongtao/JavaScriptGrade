@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发送文件</title>
+</head>
+<body>
+    <input type="file" name="myFile" id="myFile">
+    <input type="button" id="btn" value="submit">
+
+    <script>
+        document.getElementById('btn').onclick = () => {
+            let imgFormData = new FormData();
+            let imgInput = document.getElementById('myFile');
+
+            imgFormData.append('image', imgInput.files[0]);
+
+            //后端要有对应的方法
+            fetch('../chapter23', {
+                method: 'POST',
+                body: imgFormData
+            });
+        };
+
+
+    </script>
+</body>
+</html>
