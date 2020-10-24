@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可维护性试验</title>
+</head>
+<body>
+    <script>
+        let num1 = 2;  //全局变量
+
+        //这个方法也是一个全局变量
+        function add(num1, num2) {
+            return num1 + num2;
+        }
+
+        console.log(window.add);
+
+        //一个全局变量
+        let wansongtao = {
+            name: 'wst',
+            age: 22,
+            adds(num1, num2) {
+                return num1 + num2;
+            }
+        }
+
+        console.log(wansongtao.adds(1, 2));  //3
+        console.log(window.adds);  //undefined
+
+
+        let found = false;  //布尔值
+        let count = -1;  //数值
+        let name = '';  //字符串
+        let person = null;  //对象
+
+        let bFound;  //布尔值
+        let iCount;  //整数
+        let sName;  //字符串
+        let oPerson;  //对象
+
+        let found /*:Boolean*/ = false;
+        let count /*:int*/ = 10;
+        let name /*:String*/ = 'wst';
+        let person /*:Object*/ = null;
+
+
+        function vaildateValue(value) {
+            value = 5 * parseInt(value);
+            if (value > 10) {
+                document.getElementById('error-msg').style.display = 'block';
+            }
+        }
+
+        //事件处理程序
+        function handleKeyPress(e) {
+            if (e.keyCode == 13) {
+                let target = e.target;
+
+                //应用程序逻辑
+                vaildateValue(target.value);
+            }
+        }
+    </script>
+</body>
+</html>
