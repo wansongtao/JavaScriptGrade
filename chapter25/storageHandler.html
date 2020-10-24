@@ -16,7 +16,12 @@
         storge的监听处理，只有在跟A同域名下的B页面操作storage
         对象，A页面才会被触发storage事件*/
         window.addEventListener('storage', (e) => {
-            console.log('hhhh');
+            /*
+            domain:存储变化对应的域。
+            key：被设置或删除的键。
+            newValue：键被设置的新值，若键被删除则为null。
+            oldValue：键变化之前的值。
+            */
             console.log(`domain: ${e.domain} key: ${e.key} newValue: ${e.newValue} oldValue: ${e.oldValue}`);
         });
 
