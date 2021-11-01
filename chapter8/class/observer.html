@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>简单响应式实现</title>
+</head>
+<body>
+  <input id="proxy" type="text" style="margin: 50px auto; width: 100px;height: 30px;">
+
+  <script>
+    const inputEle = document.getElementById('proxy');
+
+    const obj = {
+      value: ''
+    };
+
+    let text = obj.value;
+    Object.defineProperty(obj, 'value', {
+      get() {
+        return text;
+      },
+      set(newVal) {
+        console.log(`obj.value的值改变了：${text} => ${newVal}`);
+
+        // 判断是否需要更新input的值
+        if (inputEle.value !== newVal) {
+          inputEle.value = newVal;
+        }
+
+        text = newVal;
+      }
+    });
+
+    inputEle.addEventListener('input', (e) => {
+      // dom改变了，修改数据
+      obj.value = e.target.value;
+    });
+
+    setTimeout(() => {
+      // 一秒后修改数据，查看dom是否改变
+      obj.value = 100;
+    }, 1000);
+  </script>
+</body>
+</html>
