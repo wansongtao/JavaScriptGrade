@@ -17,6 +17,7 @@ function Personal(name, age) {
 }
 
 Personal.prototype = new Person()
+Personal.prototype.constructor = Personal
 Personal.prototype.outPutInfo = function () {
   console.log(this.name, this.age);
 }
@@ -26,3 +27,4 @@ my.sayName()
 my.outPutInfo()
 
 console.log(my instanceof Personal);
+console.log(Personal.prototype.constructor);
