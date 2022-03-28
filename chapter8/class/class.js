@@ -48,4 +48,5 @@ const your = new People('spaceX', 24)
 // 静态方法也会继承
 People.sayName()
 your.outPutInfo()
+your.test()
 People.getSuper()
