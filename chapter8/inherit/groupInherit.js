@@ -1,5 +1,5 @@
 /**
- * @description 组合继承，也叫伪经典继承，综合了原型链喝盗用构造函数
+ * @description 组合继承，也叫伪经典继承，综合了原型链和盗用构造函数
  */
 
 function Person (name) {
