@@ -53,7 +53,7 @@ myCard.shuffle()
 // 以下代码报错：ReferenceError: Cannot access 'j' before initialization(初始化之前访问了j)
 // const cards = [1, 2, 3, 4, 5, 6]
 // const i = 1
-// const j = 4
+// const j = 4 // 这里加个分号就行
 
 // console.log(cards[j]);  // 加上这个就不会报错了
 
