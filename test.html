@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>服务器环境测试</title>
-</head>
-<body>
-    服务器环境测试
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>服务器环境测试</title>
+	</head>
+	<body>
+		服务器环境测试
+		<script>
+			Function.prototype.call2 = function (context, ...args) {
+				let uniqueKey = Symbol('call')
+				context[uniqueKey] = this
+
+				console.log(this, context[uniqueKey])
+
+				let result = context[uniqueKey](...args)
+				delete context[uniqueKey]
+				return result
+			}
+
+			function test() {
+				console.log(1111111, this)
+			}
+
+			test.call2(window)
+		</script>
+	</body>
 </html>
