@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File API</title>
+</head>
+<body>
+  <input type="file" name="file" id="wst">
+  <div id="test"></div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const fileEle = document.getElementById('wst')
+
+      fileEle.addEventListener('change', (e) => {
+        const files = e.target.files
+
+        // console.log(files[0])
+        
+        if (files[0].type.indexOf('image') !== -1) {
+          // 对象url：引用存储在file中的数据的url，可以不用读取文件内容到js，也可以使用文件。
+          const url = window.URL.createObjectURL(files[0]) // 返回一个指向内存中地址的字符串
+          document.getElementById('test').innerHTML = `<img src="${url}" >`
+        }
+
+        setTimeout(() => {
+          // 使用blob对象的slice方法，读取部分文件内容
+          const file = files[0]
+          const reader = new FileReader()
+          reader.readAsArrayBuffer(file.slice(0, 32))
+
+          reader.onload = function() {
+            console.log('part file', reader.result)
+          }
+        }, 100)
+
+        setTimeout(() => {
+          // 读取所有文件内容
+          const file = files[0]
+          const reader = new FileReader()
+          reader.readAsArrayBuffer(file)
+
+          reader.onload = function() {
+            console.log('complete file', reader.result)
+          }
+        }, 200)
+      })
+    })
+  </script>
+</body>
+</html>
