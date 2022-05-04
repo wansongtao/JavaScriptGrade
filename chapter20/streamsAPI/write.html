@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>可写流</title>
+</head>
+<body>
+  <script>
+    const writableStream = new WritableStream({
+      // 通过该方法获得写入的数据
+      write(value) {
+        console.log(value)
+      }
+    })
+
+    // 通过getWriter()方法获取一个实例，写入数据
+    const writer = writableStream.getWriter()
+
+    // writer.ready返回一个期约，此期约在能够向流中写入数据时解决
+    writer.ready.then(() => {
+      // 写入数据
+      writer.write(1)
+
+      // 将流关闭
+      writer.close()
+    })
+
+  </script>
+</body>
+</html>

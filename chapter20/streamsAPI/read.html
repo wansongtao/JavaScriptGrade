@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>可读流</title>
+	</head>
+	<body>
+		<input type="file" name="file" id="file" />
+
+		<script>
+			const readFile = (file) => {
+				return new Promise((resolve) => {
+					const read = new FileReader();
+					read.readAsArrayBuffer(file);
+
+					read.onload = () => {
+						resolve(read.result);
+					};
+				});
+			};
+
+			const spliceFile = async function* (file) {
+				const fileSize = file.size;
+				const chunkSize = 1024;
+				let start = 0;
+				let end = 0;
+
+				while (start < fileSize) {
+					end += chunkSize;
+
+					if (end > fileSize) {
+						end = fileSize;
+					}
+
+					const result = await readFile(file.slice(start, end));
+					start = end;
+					yield result;
+				}
+			};
+
+			document.addEventListener('DOMContentLoaded', () => {
+				const fileEle = document.getElementById('file');
+				fileEle.addEventListener('change', (e) => {
+					const file = e.target.files[0];
+
+					const readableStream = new ReadableStream({
+						async start(controller) {
+							for await (const res of spliceFile(file)) {
+								// 调用控制器的enqueue()方法把值传入控制器
+								controller.enqueue(res);
+							}
+
+							// 值传完后关闭流
+							controller.close();
+						}
+					});
+
+					// 获取ReadableStreamDefaultReader实例
+					const reader = readableStream.getReader();
+
+					(async function () {
+						while (true) {
+							// 使用实例的read()方法读出值
+							const { done, value } = await reader.read();
+							if (done) {
+								break;
+							}
+
+							console.log(value);
+						}
+					})();
+				});
+			});
+		</script>
+	</body>
+</html>
