@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>template</title>
+</head>
+<body>
+  <h1>tempalte used</h1>
+  <p>使用特殊标记template将HTML解析构建DOM子树，不渲染</p>
+  <template id="test">
+    <p>不过是大梦一场空<span>哈哈哈</span></p>
+  </template>
+
+  <script>
+    // 通过template元素的content属性可以获得这个DocumentFragment的引用
+    const fragment = document.querySelector('#test').content
+    console.log(fragment)
+    // importNode克隆DocumentFragment
+    console.log(document.importNode(fragment, true))
+  </script>
+</body>
+</html>
