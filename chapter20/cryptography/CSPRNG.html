@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>密码学安全伪随机数生成器</title>
+</head>
+<body>
+  <button id="btn">伪随机数</button>
+  <div id="content"></div>
+  <script>
+    /**
+     * @description 使用CSPRNG实现Math.random()方法
+    */
+    const random = () => {
+      const arr = new Uint8Array(1)
+      const maxUint8 = 255
+
+      return crypto.getRandomValues(arr)[0] / maxUint8
+    }
+
+    document.getElementById('btn').addEventListener('click', () => {
+      const num = random()
+
+      document.getElementById('content').innerText += num + ' , '
+    })
+  </script>
+</body>
+</html>
