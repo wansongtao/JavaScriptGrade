@@ -21,7 +21,7 @@
 
 						const transaction = db.transaction('users', 'readwrite');
 						const store = transaction.objectStore('users');
-            // 创建游标
+            // 创建游标，可以指定游标范围和方向，只要传入IDBKeyRange对象实例和表示方向的字符串
 						const request = store.openCursor();
 
 						request.onerror = (e) => {
