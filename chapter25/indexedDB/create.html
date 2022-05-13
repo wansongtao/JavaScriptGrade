@@ -70,7 +70,7 @@
 								keyPath: 'ID'
 							});
 
-              // 在users表里创建name和age索引
+              // 在users表里创建name和age索引，第一个参数为索引名字，第二个参数属性名字
 							objectStore.createIndex('name', 'name', { unique: false });
 							objectStore.createIndex('age', 'age', { unique: false });
 						}
