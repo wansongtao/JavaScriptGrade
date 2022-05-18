@@ -64,8 +64,8 @@ const getRandomArray = (len = 10000) => {
 
 /**
  * @description 使用达夫设备技术实现冒泡排序
- * @param {*} arr 
- * @returns 
+ * @param {object[number]} arr 
+ * @returns {object[number]}
  */
 const duffBubbleSort = (arr) => {
 	if (!Array.isArray(arr)) {
@@ -76,10 +76,6 @@ const duffBubbleSort = (arr) => {
 		return [];
 	}
 
-	let iterations = Math.floor((arr.length - 1) / 8);
-	let leftover = (arr.length - 1) % 8;
-	let i = 0;
-
 	const childSort = (idx, numberArr) => {
 		const len = numberArr.length - (idx + 1);
 		let loops = Math.floor(len / 8);
@@ -88,8 +84,8 @@ const duffBubbleSort = (arr) => {
 
 		if (minLoop > 0) {
 			do {
-				if (arr[count] > arr[count + 1]) {
-					[arr[count], arr[count + 1]] = [arr[count + 1], arr[count]];
+				if (numberArr[count] > numberArr[count + 1]) {
+					[numberArr[count], numberArr[count + 1]] = [numberArr[count + 1], numberArr[count]];
 				}
 
 				count++;
@@ -97,47 +93,51 @@ const duffBubbleSort = (arr) => {
 		}
 
 		do {
-			if (arr[count] > arr[count + 1]) {
-				[arr[count], arr[count + 1]] = [arr[count + 1], arr[count]];
+			if (numberArr[count] > numberArr[count + 1]) {
+				[numberArr[count], numberArr[count + 1]] = [numberArr[count + 1], numberArr[count]];
 			}
 			count++;
 
-			if (arr[count] > arr[count + 1]) {
-				[arr[count], arr[count + 1]] = [arr[count + 1], arr[count]];
+			if (numberArr[count] > numberArr[count + 1]) {
+				[numberArr[count], numberArr[count + 1]] = [numberArr[count + 1], numberArr[count]];
 			}
 			count++;
 
-			if (arr[count] > arr[count + 1]) {
-				[arr[count], arr[count + 1]] = [arr[count + 1], arr[count]];
+			if (numberArr[count] > numberArr[count + 1]) {
+				[numberArr[count], numberArr[count + 1]] = [numberArr[count + 1], numberArr[count]];
 			}
 			count++;
 
-			if (arr[count] > arr[count + 1]) {
-				[arr[count], arr[count + 1]] = [arr[count + 1], arr[count]];
+			if (numberArr[count] > numberArr[count + 1]) {
+				[numberArr[count], numberArr[count + 1]] = [numberArr[count + 1], numberArr[count]];
 			}
 			count++;
 
-			if (arr[count] > arr[count + 1]) {
-				[arr[count], arr[count + 1]] = [arr[count + 1], arr[count]];
+			if (numberArr[count] > numberArr[count + 1]) {
+				[numberArr[count], numberArr[count + 1]] = [numberArr[count + 1], numberArr[count]];
 			}
 			count++;
 
-			if (arr[count] > arr[count + 1]) {
-				[arr[count], arr[count + 1]] = [arr[count + 1], arr[count]];
+			if (numberArr[count] > numberArr[count + 1]) {
+				[numberArr[count], numberArr[count + 1]] = [numberArr[count + 1], numberArr[count]];
 			}
 			count++;
 
-			if (arr[count] > arr[count + 1]) {
-				[arr[count], arr[count + 1]] = [arr[count + 1], arr[count]];
+			if (numberArr[count] > numberArr[count + 1]) {
+				[numberArr[count], numberArr[count + 1]] = [numberArr[count + 1], numberArr[count]];
 			}
 			count++;
 
-			if (arr[count] > arr[count + 1]) {
-				[arr[count], arr[count + 1]] = [arr[count + 1], arr[count]];
+			if (numberArr[count] > numberArr[count + 1]) {
+				[numberArr[count], numberArr[count + 1]] = [numberArr[count + 1], numberArr[count]];
 			}
 			count++;
 		} while (--loops > 0);
 	};
+
+  let iterations = Math.floor((arr.length - 1) / 8);
+	let leftover = (arr.length - 1) % 8;
+	let i = 0;
 
 	if (leftover > 0) {
 		do {
@@ -177,8 +177,8 @@ const duffBubbleSort = (arr) => {
 
 /**
  * @description 冒泡排序
- * @param {*} arr 
- * @returns 
+ * @param {object[number]} arr 
+ * @returns {object[number]}
  */
 const bubbleSort = (arr) => {
   if (!Array.isArray(arr)) {
@@ -204,7 +204,7 @@ const {
   performance
 } = require('node:perf_hooks');
 
-const ARRAYLENGTH = 200000;
+const ARRAYLENGTH = 20000;
 
 const arr1 = getRandomArray(ARRAYLENGTH);
 const arr2 = [...arr1];
