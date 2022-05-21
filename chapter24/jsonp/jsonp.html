@@ -9,12 +9,11 @@
 <body>
   
   <script>
-    function test(data) {
-      console.log(data)
+    function printName(data) {
       document.write('hello ' + data.name);
     }
   </script>
-  <!-- 返回的数据会被当成js脚本，直接执行 -->
-  <script src="http://127.0.0.1:8000?callback=test"></script>
+  <!-- 因为JSONP是有效的JavaScript，所以JSONP响应在被加载完成只后会立即执行。 -->
+  <script src="http://127.0.0.1:8000?callback=printName"></script>
 </body>
 </html>

@@ -5,14 +5,17 @@ server.listen(8000);
 
 server.on('request', (req, res) => {
   try {
-    const methodName = req.url.split('=')[1];
+    // 注意：这里url只传递一个参数callback
+    const callback = req.url.split('=')[1];
 
     res.statusCode = 200;
-    res.end(`${methodName}({name: 'wst', age: '24'})`);
+
+    // 返回JSONP格式数据
+    res.end(`${callback}({"name": "JSONP"})`);
   } catch(ex) {
     console.error(ex.message);
 
     res.statusCode = 500;
-    res.end('server error');
+    res.end('throw new Error("server error")');
   }
 });
