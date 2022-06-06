@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>loading</title>
+
+  <style>
+    .container {
+      position: relative;
+      margin: 200px auto;
+      width: 120px;
+      height: 120px;
+      animation: loading 3s steps(12) infinite;
+    }
+
+    @keyframes loading {
+      from {
+        transform: rotate(0);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -15px;
+      margin-left: -15px;
+      width: 30px;
+      height: 30px;
+    }
+
+    .box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 50%;
+    }
+
+    .box_1 {
+      transform: rotate(30deg)  translate(0, 120px);
+    }
+    .box_1::before {
+      background-color: rgb(232, 228, 228);
+      transform: scale(0.08);
+    }
+
+    .box_2 {
+      transform: rotate(60deg)  translate(0, 120px);
+    }
+    .box_2::before {
+      background-color: rgb(217, 213, 213);
+      transform: scale(0.16);
+    }
+
+    .box_3 {
+      transform: rotate(90deg)  translate(0, 120px);
+    }
+    .box_3::before {
+      background-color: rgb(201, 197, 197);
+      transform: scale(0.24);
+    }
+
+    .box_4 {
+      transform: rotate(120deg)  translate(0, 120px);
+    }
+    .box_4::before {
+      background-color: rgb(190, 187, 187);
+      transform: scale(0.32);
+    }
+
+    .box_5 {
+      transform: rotate(150deg)  translate(0, 120px);
+    }
+    .box_5::before {
+      background-color: rgb(184, 179, 179);
+      transform: scale(0.40);
+    }
+
+    .box_6 {
+      transform: rotate(180deg)  translate(0, 120px);
+    }
+    .box_6::before {
+      background-color: rgb(170, 167, 167);
+      transform: scale(0.48);
+    }
+
+    .box_7 {
+      transform: rotate(210deg)  translate(0, 120px);
+    }
+    .box_7::before {
+      background-color: rgb(149, 146, 146);
+      transform: scale(0.56);
+    }
+
+    .box_8 {
+      transform: rotate(240deg)  translate(0, 120px);
+    }
+    .box_8::before {
+      background-color: rgb(111, 109, 109);
+      transform: scale(0.64);
+    }
+
+    .box_9 {
+      transform: rotate(270deg)  translate(0, 120px);
+    }
+    .box_9::before {
+      background-color: rgb(97, 94, 94);
+      transform: scale(0.72);
+    }
+
+    .box_10 {
+      transform: rotate(300deg)  translate(0, 120px);
+    }
+    .box_10::before {
+      background-color: rgb(81, 79, 79);
+      transform: scale(0.8);
+    }
+
+    .box_11 {
+      transform: rotate(330deg)  translate(0, 120px);
+    }
+    .box_11::before {
+      background-color: rgb(65, 64, 64);
+      transform: scale(0.9);
+    }
+
+    .box_12 {
+      background-color: rgb(51, 50, 50);
+      border-radius: 50%;
+      transform: rotate(360deg)  translate(0, 120px);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box box_1"></div>
+    <div class="box box_2"></div>
+    <div class="box box_3"></div>
+    <div class="box box_4"></div>
+    <div class="box box_5"></div>
+    <div class="box box_6"></div>
+    <div class="box box_7"></div>
+    <div class="box box_8"></div>
+    <div class="box box_9"></div>
+    <div class="box box_10"></div>
+    <div class="box box_11"></div>
+    <div class="box box_12"></div>
+  </div>
+</body>
+</html>
