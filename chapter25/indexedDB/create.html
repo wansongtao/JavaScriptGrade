@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>IndexedDB</title>
+	</head>
+	<body>
+		<h4>创建IndexedDB数据库</h4>
+
+		<script>
+			function createDB() {
+				try {
+					let db = null;
+
+					// 打开一个数据库，没有则创建一个新数据库并触发upgradeneeded事件
+					const request = indexedDB.open('first DB');
+
+					request.onerror = (e) => {
+						console.error(e.target.errorCode);
+					};
+
+					request.onsuccess = (e) => {
+						// 保存数据库实例
+						db = e.target.result;
+
+						// 以读写模式访问users表
+						const transaction = db.transaction('users', 'readwrite');
+
+						transaction.onerror = (e) => {
+							console.error(e);
+						};
+						transaction.oncomplete = (e) => {
+							console.log(e, 'complete');
+						};
+
+            // 使用事务访问users表
+						const store = transaction.objectStore('users');
+
+            // 添加一条记录
+            const record = {
+              ID: Date.now(), // 主键重复会触发transaction.onerror事件
+              name: (Math.random() * 100).toFixed() + 'wst' + (Math.random() * 100).toFixed(),
+              age: 24,
+              phoneNumber: 543542454,
+              hobby: '旅游、编程、游戏'
+            };
+						const addRes = store.add(record);
+
+						addRes.onsuccess = (e) => {
+							console.log(e, 'add success');
+						};
+
+            // // 通过传入主键的值获取对应的记录
+            // const getRes = store.get(1652438298713);
+            // getRes.onsuccess = (e) => {
+            //   console.log(e.target.result, 'get success');
+            // };
+					};
+
+					// 升级数据库版本/新建数据库触发
+					request.onupgradeneeded = (e) => {
+						db = e.target.result;
+
+						// 查询users表是否已存在
+						if (!db.objectStoreNames.contains('users')) {
+							// 创建users表，主键设置为ID
+							const objectStore = db.createObjectStore('users', {
+								keyPath: 'ID'
+							});
+
+              // 在users表里创建name和age索引，第一个参数为索引名字，第二个参数属性名字
+							objectStore.createIndex('name', 'name', { unique: false });
+							objectStore.createIndex('age', 'age', { unique: false });
+						}
+					};
+				} catch (ex) {
+					console.error(ex.message);
+				}
+			}
+
+			createDB();
+		</script>
+	</body>
+</html>

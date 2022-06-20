@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Performance</title>
+	</head>
+	<body>
+    <h1>formatTime</h1>
+    <button id="test">test</button>
+		<script>
+			/**
+			 * @description 获取相应的时间格式字符串
+			 * @param {Date} [date] Date对象，默认当前时间
+			 * @param {String} [format] 输出格式字符串，默认：yyyy/MM/dd HH:mm:ss。yy: 输出两位数的年份，
+			 * h：输出12小时制，H：输出24小时制，M：月份，m：分钟，一位字母则不补零
+			 * @returns {String}
+			 */
+			const formatTime = (
+				date = new Date(),
+				format = 'yyyy/MM/dd HH:mm:ss'
+			) => {
+				if (!(date instanceof Date) || typeof format !== 'string') {
+					throw new TypeError('argument type error');
+				}
+
+				if (!format) {
+					return format;
+				}
+
+				// 为什么每个属性对应一个方法？因为不是每一个方法都会被调用，只有用到的方法才会运行，从而求值，可以提高运行速度。
+				// 但是这样占用的内存空间会比每个属性求好值大一点
+				const formatObj = {
+					yy: () => {
+						return date.getFullYear().toString().substring(2, 4);
+					},
+					yyyy: () => {
+						return date.getFullYear().toString();
+					},
+					M: () => {
+						const month = date.getMonth() + 1;
+						return month.toString();
+					},
+					MM: () => {
+						const month = date.getMonth() + 1;
+						return month.toString().padStart(2, '0');
+					},
+					d: () => {
+						return date.getDate().toString();
+					},
+					dd: () => {
+						return date.getDate().toString().padStart(2, '0');
+					},
+					h: () => {
+						let hours = date.getHours();
+						if (hours > 12) {
+							hours -= 12;
+						}
+
+						return hours.toString();
+					},
+					hh: () => {
+						let hours = date.getHours();
+						if (hours > 12) {
+							hours -= 12;
+						}
+
+						return hours.toString().padStart(2, '0');
+					},
+					H: () => {
+						return date.getHours().toString();
+					},
+					HH: () => {
+						return date.getHours().toString().padStart(2, '0');
+					},
+					m: () => {
+						return date.getMinutes().toString();
+					},
+					mm: () => {
+						return date.getMinutes().toString().padStart(2, '0');
+					},
+					s: () => {
+						return date.getSeconds().toString();
+					},
+					ss: () => {
+						return date.getSeconds().toString().padStart(2, '0');
+					}
+				};
+
+				const replaceFunc = (val) => {
+					let func = formatObj[val];
+					if (func) {
+						return func();
+					}
+
+					func = formatObj[val.toLowerCase()];
+					if (func) {
+						return func();
+					}
+
+					// 没有匹配的方法，返回原字符串
+					return val;
+				};
+
+				return format.replace(
+					/([Yy]{2,4}|[M]+|[Dd]+|[Hh]+|[m]+|[Ss]+)/g,
+					replaceFunc
+				);
+			};
+
+      document.addEventListener('DOMContentLoaded', () => {
+				const btn = document.getElementById('test');
+
+				btn.addEventListener('click', () => {
+					const start = performance.now();
+					formatTime();
+					formatTime();
+					formatTime();
+					formatTime();
+					formatTime();
+					formatTime();
+					const end = performance.now();
+
+          const p = document.createElement('p')
+          p.innerText = end - start
+					document.body.append(p)
+				});
+			});
+    </script>
+	</body>
+</html>

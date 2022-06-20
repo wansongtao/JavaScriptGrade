@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ajax study</title>
+	</head>
+	<body>
+		<button id="get">get</button>
+
+		<script>
+			function ajaxGet(url = '/') {
+				return new Promise((resolve, reject) => {
+					const base = 'http://127.0.0.1:8000';
+					const xhr = new XMLHttpRequest();
+
+					xhr.onload = () => {
+						if (xhr.status >= 200 && xhr.status <= 304) {
+              resolve(xhr);
+            } else {
+              reject(xhr)
+            }
+					};
+
+          xhr.onerror = () => {
+            reject(xhr)
+          }
+
+          // 表明请求会发送凭据，跨域需设置。后端也要做相应处理。
+          xhr.withCredentials = true;
+					xhr.open('get', base + url, true);
+          xhr.timeout = 5000;
+					xhr.setRequestHeader('Accept', 'application/json, text/plain, */*');
+          xhr.send(null);
+				});
+			}
+
+			document.addEventListener('DOMContentLoaded', () => {
+				const btnGet = document.getElementById('get');
+				btnGet.addEventListener('click', () => {
+					ajaxGet('/login?name=wst&age=24').then((res) => {
+            console.log(res);
+          });
+
+          setTimeout(() => {
+            ajaxGet('/').then((res) => {
+              console.log(res, 2000)
+            })
+          }, 2000);
+				});
+			});
+		</script>
+	</body>
+</html>

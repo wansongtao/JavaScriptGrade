@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>carousel animation</title>
+
+  <style>
+    .container {
+      overflow: hidden;
+      margin: 100px auto;
+      width: 300px;
+      height: 30px;
+      background-color: #eee;
+    }
+
+    .music {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      /* 八个轮播内容，所以八帧.每一帧1s。 */
+      animation: parentMove 8s steps(8) infinite;
+    }
+
+    .music li {
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      animation: childMove 1s infinite;
+    }
+
+    @keyframes parentMove {
+      from {
+        transform: translate(0, 0);
+      }
+      to {
+        transform: translate(0, -240px);
+      }
+    }
+
+    @keyframes childMove {
+      0% {
+        transform: translate(0, 0);
+      }
+      100% {
+        transform: translate(0, -30px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <ul class="music">
+      <li>不过是大梦一场空</li>
+      <li>不过是孤影照惊鸿</li>
+      <li>不过是白驹之过一场梦</li>
+      <li>梦里有一些相逢</li>
+      <li>有道是万物皆虚空</li>
+      <li>有道是苦海最无穷</li>
+      <li>有道是人生得意须尽欢</li>
+      <li>难得最是心从容</li>
+      <li>不过是大梦一场空</li>
+    </ul>
+  </div>
+</body>
+</html>

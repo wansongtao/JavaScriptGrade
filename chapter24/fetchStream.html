@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>fetch Api</title>
+	</head>
+	<body>
+    <h4>通过Fetch API在数据块到达时，读取和操作这些数据</h4>
+		<script>
+			fetch('https://fetch.spec.whatwg.org')
+				.then((res) => {
+					return res.body;
+				})
+				.then((stream) => {
+					const reader = stream.getReader();
+					const decoder = new TextDecoder();
+
+					let text = '';
+
+					const getTextData = async () => {
+						while (true) {
+							const { value, done } = await reader.read();
+
+							if (done) {
+                return text;
+							}
+
+              // 将可读流的Uint8Array格式数据转换为可读文本
+              // stream: true => 将之前的缓冲区保留再内存，从而让跨越两个块的内容能够正确解码
+							text += decoder.decode(value, { stream: true });
+						}
+					};
+
+					getTextData().then((data) => {
+            console.log(data)
+          })
+				});
+		</script>
+	</body>
+</html>

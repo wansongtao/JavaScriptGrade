@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jsonp study</title>
+</head>
+<body>
+  
+  <script>
+    function printName(data) {
+      document.write('hello ' + data.name);
+    }
+  </script>
+  <!-- 因为JSONP是有效的JavaScript，所以JSONP响应在被加载完成只后会立即执行。 -->
+  <script src="http://127.0.0.1:8000?callback=printName"></script>
+</body>
+</html>

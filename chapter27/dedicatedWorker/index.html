@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dedicated worker</title>
+</head>
+<body>
+  <script>
+    const worker = new Worker('./worker.js');
+
+    worker.addEventListener('error', (e) => {
+      console.error(e);
+    });
+
+    worker.addEventListener('message', (e) => {
+      const result = e.data;
+
+      console.log(result);
+    });
+
+    worker.postMessage(5);
+  </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生成密码学摘要</title>
+  <style>
+    .app {
+      box-sizing: border-box;
+      margin: 100px auto;
+      padding: 20px 10px;
+      width: 1200px;
+      height: 100vh;
+      border: 1px dotted #eee;
+    }
+
+    #text {
+      margin-right: 20px;
+      width: 180px;
+      height: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <input id="text" type="text" placeholder="请输入一些字符" maxlength="12">
+    <button id="btn">生成摘要</button>
+
+    <div id="content"></div>
+  </div>
+
+  <script>
+    async function getDigest(text) {
+      // SubtleCrypto只能在安全上下文（https）中使用，在不安全的上下文中该属性是undefined
+      if (!crypto.subtle) {
+        return text
+      }
+
+      // 将字符串转换未二进制
+      const textEncoder = new TextEncoder();
+      const msg = textEncoder.encode(text)
+
+      // 获取二进制消息摘要
+      const msgDigest = await crypto.subtle.digest('SHA-256', msg)
+
+      // 将二进制消息摘要转换为16进制字符串格式
+      return Array.from(new Uint8Array(msgDigest)).map((val) => val.toString(16).padStart(2, '0')).join('')
+    }
+
+    document.getElementById('btn').addEventListener('click', () => {
+      const text = document.getElementById('text').value
+      
+      getDigest(text).then((result) => {
+        document.getElementById('content').innerHTML += `<p>${result}</p>`
+      })
+
+    })
+  </script>
+</body>
+</html>

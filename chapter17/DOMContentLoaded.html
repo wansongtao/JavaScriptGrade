@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOMContentLoaded事件</title>
+</head>
+<body>
+  <p>当初始的 HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，而无需等待样式表、图像和子框架的完全加载。</p>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function(e) {
+      console.log(e)
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>IndexedDB cursor</title>
+	</head>
+	<body>
+		<script>
+			function cursor() {
+				try {
+					const openReq = indexedDB.open('first DB');
+
+					openReq.onerror = (e) => {
+						console.error(e, 'open DB error');
+					};
+
+					openReq.onsuccess = (e) => {
+						const db = e.target.result;
+
+						const transaction = db.transaction('users', 'readwrite');
+						const store = transaction.objectStore('users');
+            // 创建游标，可以指定游标范围和方向，只要传入IDBKeyRange对象实例和表示方向的字符串
+						const request = store.openCursor();
+
+						request.onerror = (e) => {
+							console.error(e, 'open cursor error');
+						};
+
+						request.onsuccess = (e) => {
+              // 通过游标查询到的结果
+							const result = e.target.result;
+
+							if (!result) {
+								return;
+							}
+
+							console.log(`key: ${result.key}, value: ${JSON.stringify(result.value)}`);
+
+              // 移动到下一条记录
+              result.continue();
+						};
+					};
+				} catch (ex) {
+					console.error(ex);
+				}
+			}
+
+			cursor();
+		</script>
+	</body>
+</html>

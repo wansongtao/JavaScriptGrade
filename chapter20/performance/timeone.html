@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Performance</title>
+	</head>
+	<body>
+		<h1>formatTimeSlow</h1>
+		<button id="test">test</button>
+		<script>
+			/**
+			 * @description 获取相应的时间格式字符串
+			 * @param {Date} [date] Date对象，默认当前时间
+			 * @param {String} [format] 输出格式字符串，默认：yyyy/MM/dd HH:mm:ss。yy: 输出两位数的年份，
+			 * h：输出12小时制，H：输出24小时制，M：月份，m：分钟，一位字母则不补零
+			 * @returns {String}
+			 */
+			const formatTimeSlow = (
+				date = new Date(),
+				format = 'yyyy/MM/dd HH:mm:ss'
+			) => {
+				if (!(date instanceof Date) || typeof format !== 'string') {
+					throw new TypeError('argument type error');
+				}
+
+				if (!format) {
+					return format;
+				}
+
+				const year = date.getFullYear().toString();
+				const month = (date.getMonth() + 1).toString();
+				const day = date.getDate().toString();
+				const hours = date.getHours();
+				const h = hours > 12 ? hours - 12 : hours;
+				const minutes = date.getMinutes().toString();
+				const seconds = date.getSeconds().toString();
+
+				const formatObj = {
+					yy: year.substring(2, 4),
+					yyyy: year,
+					M: month,
+					MM: month.padStart(2, '0'),
+					d: day,
+					dd: day.padStart(2, '0'),
+					h: h.toString(),
+					hh: h.toString().padStart(2, '0'),
+					H: hours.toString(),
+					HH: hours.toString().padStart(2, '0'),
+					m: minutes,
+					mm: minutes.padStart(2, '0'),
+					s: seconds,
+					ss: seconds.padStart(2, '0')
+				};
+
+				const replaceFunc = (val) => {
+					let func = formatObj[val];
+					if (func) {
+						return func;
+					}
+
+					func = formatObj[val.toLowerCase()];
+					if (func) {
+						return func;
+					}
+
+					// 没有匹配的方法，返回原字符串
+					return val;
+				};
+
+				return format.replace(
+					/([Yy]{2,4}|[M]+|[Dd]+|[Hh]+|[m]+|[Ss]+)/g,
+					replaceFunc
+				);
+			};
+
+			document.addEventListener('DOMContentLoaded', () => {
+				const btn = document.getElementById('test');
+
+				btn.addEventListener('click', () => {
+					const start = performance.now();
+					formatTimeSlow();
+					formatTimeSlow();
+					formatTimeSlow();
+					formatTimeSlow();
+					formatTimeSlow();
+					formatTimeSlow();
+					const end = performance.now();
+
+          const p = document.createElement('p')
+          p.innerText = end - start
+					document.body.append(p)
+				});
+			});
+		</script>
+	</body>
+</html>
